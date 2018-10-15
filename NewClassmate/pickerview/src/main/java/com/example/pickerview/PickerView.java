@@ -24,6 +24,11 @@ import com.example.pickerview.listener.OnPickerClickListener;
 
 import java.util.Map;
 
+/*
+地址选择相关类
+ */
+
+
 public class PickerView extends PopupWindow implements View.OnClickListener {
 
     private RadioButton mTextFirst, mTextSecond, mTextThird, mTextFourth;

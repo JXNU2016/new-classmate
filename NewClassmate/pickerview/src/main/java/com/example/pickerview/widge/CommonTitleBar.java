@@ -95,6 +95,10 @@ import com.example.pickerview.statusbar.StatusBarUtils;
  * </declare-styleable>
  * <p/>
  * Created by wuhenzhizao on 16/1/12.
+ *
+ *
+ *
+ *            自定义标题类
  */
 @SuppressWarnings("ResourceType")
 public class CommonTitleBar extends RelativeLayout implements View.OnClickListener {

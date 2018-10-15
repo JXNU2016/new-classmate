@@ -13,7 +13,9 @@ import android.view.WindowManager;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.UUID;
-
+/*
+  标题展示类
+ */
 public class StatusBarUtils {
 
     public static boolean supportTransparentStatusBar() {

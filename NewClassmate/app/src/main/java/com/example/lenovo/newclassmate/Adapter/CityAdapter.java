@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 /**
  * Created by Administrator on 2016/10/26.
+ *
+ * 设置选择地址的Adapter
  */
 
 public class CityAdapter extends BaseAdapter {
