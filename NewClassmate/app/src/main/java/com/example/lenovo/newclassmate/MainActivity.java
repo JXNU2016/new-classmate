@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
         mLogin = findViewById(R.id.btn_login);
     }
 
-
-    private void startAnimation() {  //启动动画
+    //启动动画
+    private void startAnimation() {
         ObjectAnimator anim1 = new ObjectAnimator().ofFloat(mImageView1, "alpha", 1f, 0f).setDuration(5000);
         ObjectAnimator anim2 = new ObjectAnimator().ofFloat(mImageView2, "alpha", 0f, 1f).setDuration(5000);
         AnimatorSet set = new AnimatorSet();
