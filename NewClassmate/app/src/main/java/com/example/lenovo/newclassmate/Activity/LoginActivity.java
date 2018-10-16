@@ -240,7 +240,7 @@ public class LoginActivity extends AppCompatActivity{
         progressDialog.show();
 
         // TODO: Implement your own authentication logic here.
-
+     //延迟三秒打包
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
@@ -253,7 +253,7 @@ public class LoginActivity extends AppCompatActivity{
     }
 
 
-    @Override
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
@@ -278,7 +278,6 @@ public class LoginActivity extends AppCompatActivity{
 
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "登录失败", Toast.LENGTH_LONG).show();
-
         _loginButton.setEnabled(true);
     }
 
