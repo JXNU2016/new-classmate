@@ -16,6 +16,10 @@ import android.widget.ImageView;
 import com.example.lenovo.newclassmate.Activity.LoginActivity;
 import com.example.lenovo.newclassmate.Activity.VerifyActivity;
 
+
+/*
+主界面Activity
+ */
 public class MainActivity extends AppCompatActivity {
 
     ImageView mImageView1;

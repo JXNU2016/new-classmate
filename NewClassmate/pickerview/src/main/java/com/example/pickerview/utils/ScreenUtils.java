@@ -12,6 +12,10 @@ import java.lang.reflect.Field;
 
 public class ScreenUtils {
 
+
+    /*
+    标题相关类
+     */
     public static float dp2Px(Context context, float dp) {
         if (context == null) {
             return -1;
@@ -38,7 +42,6 @@ public class ScreenUtils {
     public static float px2DpCeilInt(Context context, float px) {
         return (int) (px2Dp(context, px) + 0.5f);
     }
-
 
     public static int sp2px(Context context, float spValue) {
         float fontScale = context.getResources().getDisplayMetrics().scaledDensity;

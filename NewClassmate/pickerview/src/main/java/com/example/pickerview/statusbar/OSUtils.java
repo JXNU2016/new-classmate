@@ -6,7 +6,9 @@ import android.text.TextUtils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+/*
+标题展示类
+ */
 public class OSUtils {
     private static final String ROM_MIUI = "MIUI";
     private static final String ROM_EMUI = "EMUI";

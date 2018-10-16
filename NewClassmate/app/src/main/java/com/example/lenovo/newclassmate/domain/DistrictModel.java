@@ -1,5 +1,9 @@
 package com.example.lenovo.newclassmate.domain;
 
+
+/*
+县级类
+ */
 public class DistrictModel {
     private String name;
     private String zipcode;

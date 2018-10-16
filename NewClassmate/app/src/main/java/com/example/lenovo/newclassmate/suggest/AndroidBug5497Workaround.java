@@ -7,6 +7,10 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 
+
+/*
+解决沉浸式标题栏所带来的Bug类，在Actiity调用    具体调用代码AndroidBug5497Workaround.assistActivity(findViewById(android.R.id.content));
+ */
 //public class AndroidBug5497Workaround {
 //
 //    // For more information, see https://code.google.com/p/android/issues/detail?id=5497

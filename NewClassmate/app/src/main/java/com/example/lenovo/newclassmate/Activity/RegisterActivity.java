@@ -34,6 +34,10 @@ import com.example.pickerview.listener.OnPickerClickListener;
 import com.example.pickerview.widge.CommonTitleBar;
 
 
+
+/*
+注册界面Activity
+ */
 public class RegisterActivity extends BaseActivity {
 
     private static final String TAG = "SignupActivity";
@@ -87,6 +91,7 @@ public class RegisterActivity extends BaseActivity {
 //        data.setInitSelectText("河北省","石家庄市","平山县");
         //初始化选择器
         pickerView=new PickerView(this,data);
+        //设置选择地址监听事件
         mTextAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,10 +142,13 @@ public class RegisterActivity extends BaseActivity {
         });
     }
 
+
+    //登录键触发函数
     public void signup() {
         Log.d(TAG, "Signup");
 
-        if (!validate()) {
+        if (!validate()) {   //检测各个EditText的数据是否符合输入标准
+            //登录失败
             onSignupFailed();
             return;
         }

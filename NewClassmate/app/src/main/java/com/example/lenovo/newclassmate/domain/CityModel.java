@@ -2,9 +2,13 @@ package com.example.lenovo.newclassmate.domain;
 
 import java.util.List;
 
+
+/*
+市级类
+ */
 public class CityModel {
-    private String name;
-    private List<DistrictModel> districtList;
+    private String name;  //市名
+    private List<DistrictModel> districtList; //所包含的区或县
 
     public CityModel() {
         super();

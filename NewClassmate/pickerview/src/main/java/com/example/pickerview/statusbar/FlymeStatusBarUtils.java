@@ -12,6 +12,7 @@ import java.lang.reflect.Method;
 
 /**
  * Created by wangchende on 15-9-7.
+ * 标题展示类
  */
 public class FlymeStatusBarUtils {
     private static Method mSetStatusBarColorIcon;

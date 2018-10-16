@@ -2,9 +2,13 @@ package com.example.lenovo.newclassmate.domain;
 
 import java.util.List;
 
+
+/*
+省级类
+ */
 public class ProvinceModel {
-    private String name;
-    private List<CityModel> cityList;
+    private String name;//省名
+    private List<CityModel> cityList;  //所包含的市
 
     public ProvinceModel() {
         super();

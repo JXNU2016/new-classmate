@@ -10,6 +10,9 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 
+/*
+地址
+ */
 public class XmlParserHandler extends DefaultHandler {
     private List<ProvinceModel> provinceList = new ArrayList<ProvinceModel>();
 

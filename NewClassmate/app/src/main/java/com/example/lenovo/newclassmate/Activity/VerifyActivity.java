@@ -20,6 +20,10 @@ import android.widget.Spinner;
 import com.example.lenovo.newclassmate.R;
 import com.example.pickerview.widge.CommonTitleBar;
 
+
+/*
+注册检验Activity
+ */
 public class VerifyActivity extends Activity {
 
     private Button mNext;
@@ -49,6 +53,8 @@ public class VerifyActivity extends Activity {
                       }
                  });
 
+
+        //设置title标题栏
         ((CommonTitleBar) findViewById(R.id.titlebar)).setListener(new CommonTitleBar.OnTitleBarListener() {
             @Override
             public void onClicked(View v, int action, String extra) {
