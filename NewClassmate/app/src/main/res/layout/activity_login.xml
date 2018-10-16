@@ -8,9 +8,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:background="@drawable/welcome2">
+    android:focusable="true">
+
 
     <com.example.pickerview.widge.CommonTitleBar
         android:id="@+id/titlebar_login"
