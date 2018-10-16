@@ -35,4 +35,5 @@ dependencies {
 
     implementation 'com.wuhenzhizao:titlebar:1.1.3'
     implementation project(':pickerview')
+    implementation 'com.mcxiaoke.volley:library:1.0.19'
 }

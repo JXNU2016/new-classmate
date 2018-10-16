@@ -25,6 +25,7 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,9 +39,23 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.lenovo.newclassmate.R;
 import com.example.pickerview.widge.CommonTitleBar;
 import com.example.lenovo.newclassmate.suggest.*;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /*
 登录界面Activity
 
@@ -49,6 +64,11 @@ import com.example.lenovo.newclassmate.suggest.*;
 public class LoginActivity extends AppCompatActivity{
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+    private ClientThread clientThread;
+    private Handler handler = new Handler();
+    private String schoolName;
+    private String studentId;
+    private String password;
 
     @BindView(R.id.input_number) EditText mInput_number;
     @BindView(R.id.input_password) EditText _passwordText;
@@ -73,7 +93,19 @@ public class LoginActivity extends AppCompatActivity{
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,VerifyActivity.str);
         mSpiner_textView.setAdapter(adapter);
         mSpiner_textView.setDropDownVerticalOffset(100);//设置Spiner向下偏移量
-       getSupportActionBar().hide(); //隐藏标题栏
+        getSupportActionBar().hide(); //隐藏标题栏
+
+
+        //为学校下拉框绑定监听器获取学校名字
+        AdapterView.OnItemSelectedListener mOnItemSelectedListener = new AdapterView.OnItemSelectedListener(){
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position,
+                                       long arg3) {
+                schoolName=arg0.getItemAtPosition(position).toString();
+            }
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        };
+        mSpiner_textView.setOnItemSelectedListener(mOnItemSelectedListener);
 
         //监听输入框（得到登录非焦点效果）
         _loginButton.setEnabled(false);
@@ -127,34 +159,34 @@ public class LoginActivity extends AppCompatActivity{
     public void login() {
         Log.d(TAG, "Login");
         if (!validate()) { //检测输入是否有效函数
-            onLoginFailed();
+            Toast.makeText(getBaseContext(), "输入错误！", Toast.LENGTH_LONG).show();
             return;
         }
         else if(validate())
         {
-            onLoginSuccess();
-            return;
+            clientThread=new ClientThread(schoolName,studentId,password);
+            new Thread(clientThread).start();
         }
 
     }
 
     //登录成功
-    public void onLoginSuccess() {
-        Toast.makeText(getBaseContext(), "登录成功", Toast.LENGTH_LONG).show();
+    public void onLoginSuccess(String name) {
+        Toast.makeText(getBaseContext(), "欢迎您："+name, Toast.LENGTH_LONG).show();
     }
     //登录失败
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "登录失败", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "账号或密码错误！", Toast.LENGTH_LONG).show();
     }
 
     //判断输入的合法性
     public boolean validate() {
         boolean valid = true;
 
-        String number = mInput_number.getText().toString();
-        String password = _passwordText.getText().toString();
+        studentId = mInput_number.getText().toString();
+        password = _passwordText.getText().toString();
 
-        if (number.isEmpty() || number.length()<10) {
+        if (studentId.isEmpty() || studentId.length()<10) {
             mInput_number.setError("输入有效的学号");
             valid = false;
         } else {
@@ -169,6 +201,79 @@ public class LoginActivity extends AppCompatActivity{
         return valid;
     }
 
+    //创建线程处理http请求
+    class ClientThread implements Runnable
+    {
+        private Handler handler;
+        public Handler revHandler;
+        String schoolName;
+        String studentId;
+        String password;
+
+        public ClientThread(String schoolName,String studentId,String password) {
+            this.schoolName=schoolName;
+            this.studentId=studentId;
+            this.password=password;
+        }
+        public void run()
+        {
+            LoginRequest(schoolName,studentId,password);
+        }
+
+    }
+
+    //创建http请求
+    public void LoginRequest(final String schoolName, final String studentId, final String password) {
+        //请求地址
+        String url = "http://47.107.48.62:8080/MyProject/LandServlet";
+        String tag = "zszszs";
+
+        //取得请求队列
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        //防止重复请求，所以先取消tag标识的请求队列
+        requestQueue.cancelAll(tag);
+
+        //创建StringRequest，定义字符串请求的请求方式为POST(省略第一个参数会默认为GET方式)
+        final StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) new JSONObject(response).get("params");
+                            String result = jsonObject.getString("Result");
+                            if (result.equals("success")) {
+                                String name=jsonObject.getString("Name");
+                                onLoginSuccess(name);
+                            } else {
+                                onLoginFailed();
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(getBaseContext(), "网络连接错误", Toast.LENGTH_LONG).show();
+                            Log.e("TAG", e.getMessage(), e);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), "服务器繁忙，请稍后再试！", Toast.LENGTH_LONG).show();
+                Log.e("TAG", error.getMessage(), error);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("SchoolName",schoolName);
+                params.put("StudentId", studentId);
+                params.put("Password", password);
+                return params;
+            }
+        };
+        //设置Tag标签
+        request.setTag(tag);
+        //将请求添加到队列中
+        requestQueue.add(request);
+    }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
