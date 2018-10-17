@@ -86,7 +86,6 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        //initListener();
         AndroidBug5497Workaround.assistActivity(findViewById(android.R.id.content)); //修复沉浸式状态栏所带来的adjustResize属性所带来的失效问题
 
         screenHeight = this.getResources().getDisplayMetrics().heightPixels; //获取屏幕高度
@@ -106,6 +105,7 @@ public class LoginActivity extends AppCompatActivity{
             }
         };
         mSpiner_textView.setOnItemSelectedListener(mOnItemSelectedListener);
+
 
         //监听输入框（得到登录非焦点效果）
         _loginButton.setEnabled(false);
@@ -155,6 +155,7 @@ public class LoginActivity extends AppCompatActivity{
         });
     }
 
+
    //登录触发函数
     public void login() {
         Log.d(TAG, "Login");
@@ -171,13 +172,14 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     //登录成功
-    public void onLoginSuccess(String name) {
-        Toast.makeText(getBaseContext(), "欢迎您："+name, Toast.LENGTH_LONG).show();
+    public void onLoginSuccess(String userName) {
+        Toast.makeText(getBaseContext(), "欢迎您："+userName, Toast.LENGTH_LONG).show();
     }
     //登录失败
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "账号或密码错误！", Toast.LENGTH_LONG).show();
     }
+
 
     //判断输入的合法性
     public boolean validate() {
@@ -201,11 +203,10 @@ public class LoginActivity extends AppCompatActivity{
         return valid;
     }
 
+
     //创建线程处理http请求
     class ClientThread implements Runnable
     {
-        private Handler handler;
-        public Handler revHandler;
         String schoolName;
         String studentId;
         String password;
@@ -217,13 +218,14 @@ public class LoginActivity extends AppCompatActivity{
         }
         public void run()
         {
-            LoginRequest(schoolName,studentId,password);
+            InternetRequest(schoolName,studentId,password);
         }
 
     }
 
+
     //创建http请求
-    public void LoginRequest(final String schoolName, final String studentId, final String password) {
+    public void InternetRequest(final String schoolName, final String studentId, final String password) {
         //请求地址
         String url = "http://47.107.48.62:8080/MyProject/LandServlet";
         String tag = "zszszs";
@@ -244,7 +246,8 @@ public class LoginActivity extends AppCompatActivity{
                             String result = jsonObject.getString("Result");
                             if (result.equals("success")) {
                                 String name=jsonObject.getString("Name");
-                                onLoginSuccess(name);
+                                String userName=jsonObject.getString("userName");
+                                onLoginSuccess(userName);
                             } else {
                                 onLoginFailed();
                             }
@@ -274,6 +277,7 @@ public class LoginActivity extends AppCompatActivity{
         //将请求添加到队列中
         requestQueue.add(request);
     }
+
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
