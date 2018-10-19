@@ -46,7 +46,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.lenovo.newclassmate.AllActivity;
 import com.example.lenovo.newclassmate.R;
+import com.example.lenovo.newclassmate.StartActivity;
 import com.example.pickerview.widge.CommonTitleBar;
 import com.example.lenovo.newclassmate.suggest.*;
 
@@ -85,6 +87,7 @@ public class LoginActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        AllActivity.getInstance().addActivity(this);   //添加此Activity到容器内
         ButterKnife.bind(this);
         AndroidBug5497Workaround.assistActivity(findViewById(android.R.id.content)); //修复沉浸式状态栏所带来的adjustResize属性所带来的失效问题
 
@@ -174,6 +177,9 @@ public class LoginActivity extends AppCompatActivity{
     //登录成功
     public void onLoginSuccess(String userName) {
         Toast.makeText(getBaseContext(), "欢迎您："+userName, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(LoginActivity.this, StartActivity.class);
+        startActivity(intent);
+        finish();
     }
     //登录失败
     public void onLoginFailed() {

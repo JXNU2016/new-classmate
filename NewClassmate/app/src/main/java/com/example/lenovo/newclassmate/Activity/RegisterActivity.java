@@ -1,15 +1,19 @@
 package com.example.lenovo.newclassmate.Activity;
 
+import android.animation.ObjectAnimator;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,6 +21,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +36,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.lenovo.newclassmate.AllActivity;
 import com.example.lenovo.newclassmate.MainActivity;
+import com.example.lenovo.newclassmate.MyScrollView;
+import com.example.lenovo.newclassmate.MyScrollView.ScrollViewListener;
 import com.example.lenovo.newclassmate.R;
 import com.example.lenovo.newclassmate.suggest.AndroidBug5497Workaround;
 import com.example.pickerview.PickerView;
@@ -68,6 +76,8 @@ public class RegisterActivity extends BaseActivity {
     private String username=null;
     private ClientThread clientThread;
 
+    private MyScrollView msc;
+
     @BindView(R.id.input_mobile) EditText mPhone ;
     @BindView(R.id.input_password) EditText mPsaaword;
     @BindView(R.id.input_reEnterPassword) EditText mRePassWord;
@@ -76,16 +86,19 @@ public class RegisterActivity extends BaseActivity {
     @BindView(R.id.text_address) EditText mTextAddress;
     @BindView(R.id.input_name)  EditText mInput_name;
     @BindView(R.id.input_time) EditText mInput_time;
-    @BindView(R.id.scroll_register) ScrollView mSc;
     @BindView(R.id.school) TextView school;
     @BindView(R.id.userId) TextView userId;
     @BindView(R.id.userName) TextView userName;
+    @BindView(R.id.titlebar_register) com.example.pickerview.widge.CommonTitleBar title;
     PickerView pickerView;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        AllActivity.getInstance().addActivity(this);   //添加此Activity到容器内
 
+        msc=(MyScrollView)findViewById(R.id.scroll_register) ;
         name = getIntent().getStringExtra("name");
         sex = getIntent().getStringExtra("sex");
         schoolName = getIntent().getStringExtra("schoolName");
@@ -103,6 +116,8 @@ public class RegisterActivity extends BaseActivity {
 
         mTextAddress.setFocusable(false);//让EditText失去焦点，然后获取点击事件
         mInput_time.setFocusable(false);
+
+
 
 
         //为（注册）按钮绑定监听器
@@ -124,6 +139,36 @@ public class RegisterActivity extends BaseActivity {
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         });
+
+        //设置滑动隐藏标题栏
+        msc.setScrollViewListener(new MyScrollView.ScrollViewListener() {
+            //            y表示当前滑动条的纵坐标
+            //            oldy表示前一次滑动的纵坐标
+            @Override
+            public void onScrollChanged(View scrollView, int x, int y, int oldx, int oldy) {
+                if (y < 300) {
+                    float alpha = 1 - ((float) y) / 300;
+                    title.setAlpha(alpha);
+                    if (alpha==0)
+                    {
+                        title.setClickable(false);
+                    }else
+                    {
+                        title.setClickable(true);
+                    }
+                } else {
+                    //下滑显示标题栏
+                    if (oldy > y) {
+                        title.setAlpha(1);
+                        title.setClickable(true);
+                    } else {
+                        title.setAlpha(0);
+                        title.setClickable(false);
+                    }
+                }
+            }
+        });
+
 
 
         //设置选择地址模块
@@ -160,11 +205,11 @@ public class RegisterActivity extends BaseActivity {
 
 
         //设置title标题栏
-        ((CommonTitleBar) findViewById(R.id.titlebar_register)).setListener(new CommonTitleBar.OnTitleBarListener() {
-            @Override
-            public void onClicked(View v, int action, String extra) {
+       ((CommonTitleBar) findViewById(R.id.titlebar_register)).setListener(new CommonTitleBar.OnTitleBarListener() {
+           @Override
+           public void onClicked(View v, int action, String extra) {
                 if (action == CommonTitleBar.ACTION_LEFT_TEXT) {
-                    onBackPressed();
+                    finish();
                 }
             }
         });
