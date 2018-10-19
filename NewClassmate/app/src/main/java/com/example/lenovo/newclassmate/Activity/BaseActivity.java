@@ -7,13 +7,28 @@ import java.util.Map;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.AssetManager;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.example.lenovo.newclassmate.R;
 import com.example.lenovo.newclassmate.domain.*;
 import  com.example.lenovo.newclassmate.XmlParserHandler;
 
 public class BaseActivity extends AppCompatActivity {
+
+    private static final String EXITACTION = "action.exit";
+
 
     /**
      * 所有省
@@ -114,6 +129,5 @@ public class BaseActivity extends AppCompatActivity {
 
         }
     }
-
 }
 
