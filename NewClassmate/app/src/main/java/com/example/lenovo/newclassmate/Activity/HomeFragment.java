@@ -36,6 +36,11 @@ import java.util.TimerTask;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+
+/*
+首页界面Fragment
+ */
+
 public class HomeFragment extends Fragment {
 
     protected Activity mActivity;
@@ -64,8 +69,8 @@ public class HomeFragment extends Fragment {
             //            oldy表示前一次滑动的纵坐标
             @Override
             public void onScrollChanged(View scrollView, int x, int y, int oldx, int oldy) {
-                if (y < 300) {
-                    float alpha = 1 - ((float) y) / 300;
+                if (y < 800) {
+                    float alpha = 1 - ((float) y) / 800;
                     title.setAlpha(alpha);
                     if (alpha==0)
                     {
@@ -87,6 +92,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //设置图片和标题
         list_path.add("http://47.107.48.62:8080/home_1.jpg");
         list_path.add("http://47.107.48.62:8080/home_2.jpg");
         list_path.add("http://47.107.48.62:8080/home_3.jpg");
@@ -116,8 +122,6 @@ public class HomeFragment extends Fragment {
         banner.setIndicatorGravity(BannerConfig.CENTER);
         //banner设置方法全部调用完毕时最后调用
         banner.start();
-
-
 
         return view;
     }

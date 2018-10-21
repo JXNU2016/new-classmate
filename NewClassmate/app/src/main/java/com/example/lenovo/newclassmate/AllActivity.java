@@ -6,6 +6,13 @@ import android.app.Application;
 import java.util.LinkedList;
 import java.util.List;
 
+
+/*
+Activity容器
+
+所有启动过的Activity储存在这个容器，便于finish（）
+ */
+
 public class AllActivity extends Application {
     private List<Activity> activitys = null;
     private static AllActivity instance;

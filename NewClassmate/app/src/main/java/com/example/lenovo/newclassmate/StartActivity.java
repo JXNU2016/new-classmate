@@ -69,11 +69,11 @@ public class StartActivity extends FragmentActivity {
             @Override
             public void onTabChildClick(int position, ImageView currentImageIcon, TextView currentTextView) {  //绑定监听器
 
-
             }
         });
     }
 
+    //双击返回退出程序
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
             long secondTime = System.currentTimeMillis();
