@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="drawableText">
+        <attr name="left_Drawable" format="reference|integer" />
+        <attr name="right_Drawable" format="reference|integer" />
+        <attr name="top_Drawable" format="reference|integer" />
+        <attr name="bottom_Drawable" format="reference|integer" />
+        <attr name="drawable_Width" format="dimension" />
+        <attr name="drawable_Height" format="dimension" />
+
+    </declare-styleable>
+</resources>
