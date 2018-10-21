@@ -13,7 +13,8 @@
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
     <color name="blue">#046ffb</color>
-
+    <color name="colorTestName">#0e0e0e</color>
+    <color name="colorWhite">#fff</color>
     <color name="primary">#FFFFFF</color>
     <color name="primary_dark">#FFFFFF</color>
     <color name="primary_darker">#FFFFFF</color>
