@@ -36,6 +36,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.codbking.widget.bean.DateType;
 import com.example.lenovo.newclassmate.AllActivity;
 import com.example.lenovo.newclassmate.MainActivity;
 import com.example.lenovo.newclassmate.MyScrollView;
@@ -44,13 +45,20 @@ import com.example.lenovo.newclassmate.R;
 import com.example.lenovo.newclassmate.suggest.AndroidBug5497Workaround;
 import com.example.pickerview.PickerView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.example.pickerview.entity.PickerData;
 import com.example.pickerview.listener.OnPickerClickListener;
 import com.example.pickerview.widge.CommonTitleBar;
+
+import com.codbking.widget.DatePickDialog;
+import com.codbking.widget.OnSureLisener;
+import com.codbking.widget.OnChangeLisener;
+import com.codbking.widget.bean.DateType;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -219,22 +227,33 @@ public class RegisterActivity extends BaseActivity {
         mInput_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar c=Calendar.getInstance();
-                new DatePickerDialog(RegisterActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-                        mInput_time.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
-                        RegisterActivity.this.year=String.valueOf(year);
-                        RegisterActivity.this.month=String.valueOf(month+1);
-                        RegisterActivity.this.day=String.valueOf(dayOfMonth);
-                    }
-                },c.get(Calendar.YEAR)
-                 ,c.get(Calendar.MONTH)
-                 ,c.get(Calendar.DAY_OF_MONTH)).show();
+                showDatePickDialog(DateType.TYPE_YMD);
             }
         });
+
     }
+    //触发出生日期时间选择函数
+    private void showDatePickDialog(DateType type) {
+        DatePickDialog dialog = new DatePickDialog(this);
+        //设置上下年分限制
+        dialog.setYearLimt(50);
+        //设置标题
+        dialog.setTitle("选择时间");
+        //设置类型
+        dialog.setType(DateType.TYPE_YMD);
+        //设置消息体的显示格式，日期格式
+        dialog.setMessageFormat("yyyy-MM-dd");
+        //设置点击确定按钮回调
+        dialog.setOnSureLisener(new OnSureLisener() {
+            @Override
+            public void onSure(Date date) {
+                String mat="yyyy-MM-dd";
+                mInput_time.setText( new SimpleDateFormat(mat).format(date));
+            }
+        });
+        dialog.show();
+    }
+
 
 
     //登录键触发函数

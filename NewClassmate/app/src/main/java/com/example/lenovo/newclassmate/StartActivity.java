@@ -1,6 +1,9 @@
 package com.example.lenovo.newclassmate;
 
 import android.app.ActivityManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +18,7 @@ import android.widget.Toast;
 import com.example.lenovo.newclassmate.Activity.BaseActivity;
 import com.example.lenovo.newclassmate.Activity.ChatFragment;
 import com.example.lenovo.newclassmate.Activity.HomeFragment;
+import com.example.lenovo.newclassmate.Activity.LoginActivity;
 import com.example.lenovo.newclassmate.Activity.TestFragment;
 import com.example.lenovo.newclassmate.Activity.UserFragment;
 import com.gyf.barlibrary.ImmersionBar;
@@ -36,9 +40,24 @@ public class StartActivity extends FragmentActivity {
     Fragment chatActivity;
     Fragment userActivity;
     private long firstTime = 0;
+    private SharedPreferences preferences;
+
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        //读取本地缓存的账号密码
+        preferences=getSharedPreferences("land", Context.MODE_PRIVATE);
+        String studentId = preferences.getString("studentId", null);
+        String password = preferences.getString("password", null);
+        if (studentId == null || password == null) {
+            Intent intent = new Intent(StartActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+
         setContentView(R.layout.activity_start);
         ImmersionBar.with(this).init();
 
@@ -74,19 +93,21 @@ public class StartActivity extends FragmentActivity {
         });
     }
 
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-            long secondTime = System.currentTimeMillis();
-            if (secondTime - firstTime > 2000) {
-                Toast.makeText(StartActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
-                firstTime = secondTime;
-                return true;
-            } else {
-                AllActivity.getInstance().exit();
-                finish();
-            }
-        }
 
-        return super.onKeyUp(keyCode, event);
-    }
+       //设置双击退出
+        public boolean onKeyUp(int keyCode, KeyEvent event) {
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                long secondTime = System.currentTimeMillis();
+                if (secondTime - firstTime > 2000) {
+                    Toast.makeText(StartActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                    firstTime = secondTime;
+                    return true;
+                } else {
+                    AllActivity.getInstance().exit();
+                    finish();
+                }
+            }
+
+            return super.onKeyUp(keyCode, event);
+        }
 }
