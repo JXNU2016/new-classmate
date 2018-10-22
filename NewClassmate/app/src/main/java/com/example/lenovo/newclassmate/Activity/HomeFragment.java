@@ -64,8 +64,8 @@ public class HomeFragment extends Fragment {
             //            oldy表示前一次滑动的纵坐标
             @Override
             public void onScrollChanged(View scrollView, int x, int y, int oldx, int oldy) {
-                if (y < 300) {
-                    float alpha = 1 - ((float) y) / 300;
+                if (y < 800) {
+                    float alpha = 1 - ((float) y) / 800;
                     title.setAlpha(alpha);
                     if (alpha==0)
                     {

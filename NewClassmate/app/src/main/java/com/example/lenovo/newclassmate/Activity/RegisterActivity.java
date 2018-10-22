@@ -44,20 +44,13 @@ import com.example.lenovo.newclassmate.R;
 import com.example.lenovo.newclassmate.suggest.AndroidBug5497Workaround;
 import com.example.pickerview.PickerView;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.example.pickerview.entity.PickerData;
 import com.example.pickerview.listener.OnPickerClickListener;
 import com.example.pickerview.widge.CommonTitleBar;
-
-import com.codbking.widget.DatePickDialog;
-import com.codbking.widget.OnSureLisener;
-import com.codbking.widget.OnChangeLisener;
-import com.codbking.widget.bean.DateType;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -105,7 +98,7 @@ public class RegisterActivity extends BaseActivity {
         setContentView(R.layout.activity_register);
         AllActivity.getInstance().addActivity(this);   //添加此Activity到容器内
 
-        msc = (MyScrollView) findViewById(R.id.scroll_register);
+        msc=(MyScrollView)findViewById(R.id.scroll_register) ;
         name = getIntent().getStringExtra("name");
         sex = getIntent().getStringExtra("sex");
         schoolName = getIntent().getStringExtra("schoolName");
@@ -125,6 +118,8 @@ public class RegisterActivity extends BaseActivity {
         mInput_time.setFocusable(false);
 
 
+
+
         //为（注册）按钮绑定监听器
         mbtn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +133,7 @@ public class RegisterActivity extends BaseActivity {
         mloginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {  //实现手势侧滑
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
@@ -154,9 +149,11 @@ public class RegisterActivity extends BaseActivity {
                 if (y < 300) {
                     float alpha = 1 - ((float) y) / 300;
                     title.setAlpha(alpha);
-                    if (alpha == 0) {
+                    if (alpha==0)
+                    {
                         title.setClickable(false);
-                    } else {
+                    }else
+                    {
                         title.setClickable(true);
                     }
                 } else {
@@ -173,13 +170,14 @@ public class RegisterActivity extends BaseActivity {
         });
 
 
+
         //设置选择地址模块
-        PickerData data = new PickerData();       //选择器数据实体类封装 ,设置pickerview
+        PickerData data=new PickerData();       //选择器数据实体类封装 ,设置pickerview
         data.setFirstDatas(mProvinceDatas);     //设置数据，有多少层级自己确定
         data.setSecondDatas(mCitisDatasMap);
         data.setThirdDatas(mDistrictDatasMap);
         data.setFourthDatas(new HashMap<String, String[]>());
-        pickerView = new PickerView(this, data);       //初始化选择器
+        pickerView=new PickerView(this,data);       //初始化选择器
         mTextAddress.setOnClickListener(new View.OnClickListener() { //设置选择地址监听事件
             @Override
             public void onClick(View v) {
@@ -190,27 +188,26 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void OnPickerClick(PickerData pickerData) {              //选择列表时触发的事件
                 mTextAddress.setText(pickerData.getSelectText());           //想获取单个选择项 PickerData内也有方法（弹出框手动关闭）
-                province = pickerData.getFirstText();
-                city = pickerData.getSecondText();
-                county = pickerData.getThirdText();
+                province=pickerData.getFirstText();
+                city=pickerData.getSecondText();
+                county=pickerData.getThirdText();
                 pickerView.dismiss();//关闭选择器
 
             }
-
             @Override
             public void OnPickerConfirmClick(PickerData pickerData) {       //点击确定按钮触发的事件（自动关闭）
                 mTextAddress.setText(pickerData.getSelectText());
-                province = pickerData.getFirstText();
-                city = pickerData.getSecondText();
-                county = pickerData.getThirdText();
+                province=pickerData.getFirstText();
+                city=pickerData.getSecondText();
+                county=pickerData.getThirdText();
             }
         });
 
 
         //设置title标题栏
-        ((CommonTitleBar) findViewById(R.id.titlebar_register)).setListener(new CommonTitleBar.OnTitleBarListener() {
-            @Override
-            public void onClicked(View v, int action, String extra) {
+       ((CommonTitleBar) findViewById(R.id.titlebar_register)).setListener(new CommonTitleBar.OnTitleBarListener() {
+           @Override
+           public void onClicked(View v, int action, String extra) {
                 if (action == CommonTitleBar.ACTION_LEFT_TEXT) {
                     finish();
                 }
@@ -222,33 +219,22 @@ public class RegisterActivity extends BaseActivity {
         mInput_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDatePickDialog(DateType.TYPE_YMD);
+                Calendar c=Calendar.getInstance();
+                new DatePickerDialog(RegisterActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                        mInput_time.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        RegisterActivity.this.year=String.valueOf(year);
+                        RegisterActivity.this.month=String.valueOf(month+1);
+                        RegisterActivity.this.day=String.valueOf(dayOfMonth);
+                    }
+                },c.get(Calendar.YEAR)
+                 ,c.get(Calendar.MONTH)
+                 ,c.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
     }
-    //触发出生日期时间选择函数
-    private void showDatePickDialog(DateType type) {
-        DatePickDialog dialog = new DatePickDialog(this);
-        //设置上下年分限制
-        dialog.setYearLimt(50);
-        //设置标题
-        dialog.setTitle("选择时间");
-        //设置类型
-        dialog.setType(DateType.TYPE_YMD);
-        //设置消息体的显示格式，日期格式
-        dialog.setMessageFormat("yyyy-MM-dd");
-        //设置点击确定按钮回调
-        dialog.setOnSureLisener(new OnSureLisener() {
-            @Override
-            public void onSure(Date date) {
-                String mat="yyyy-MM-dd";
-                mInput_time.setText( new SimpleDateFormat(mat).format(date));
-            }
-        });
-        dialog.show();
-    }
-
 
 
     //登录键触发函数

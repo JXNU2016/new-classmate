@@ -5,7 +5,6 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.ExpandableListActivity;
 import android.app.ProgressDialog;
-import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -65,7 +63,7 @@ import java.util.Map;
 
 所有注释代码是我在调试使用的，可忽略 可以点击减号隐藏
  */
-public class LoginActivity extends Activity implements  View.OnClickListener{
+public class LoginActivity extends AppCompatActivity{
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     private ClientThread clientThread;
@@ -79,20 +77,12 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
     @BindView(R.id.btn_login) Button _loginButton;
     @BindView(R.id.link_signup) TextView _signupLink;
     @BindView(R.id.spiner_textview)Spinner mSpiner_textView;
-    //  @BindView(R.id.logo) ImageView mLogo;
+    @BindView(R.id.logo) ImageView mLogo;
     @BindView(R.id.scrollView_login) ScrollView mScrollView;
     @BindView(R.id.content) View mContent;
-    @BindView(R.id.service) View service;
-    @BindView(R.id.iv_clean_number) ImageView iv_clean_number;
-    @BindView(R.id.clean_password) ImageView clean_password;
-    @BindView(R.id.iv_show_pwd) ImageView iv_show_pwd;
-
+    @BindView(R.id.root) View mLayout;
     private int screenHeight = 0;//屏幕高度
-    private int keyHeight = 0; //软件盘弹起后所占高度
-    private float scale = 0.5f; //logo缩放比例
 
-    SharedPreferences preferences;//创建SharedPreferences保存登录学号和密码
-    SharedPreferences.Editor editor; //editor对象向SharedPreferences写入数据
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,15 +90,13 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
         AllActivity.getInstance().addActivity(this);   //添加此Activity到容器内
         ButterKnife.bind(this);
         AndroidBug5497Workaround.assistActivity(findViewById(android.R.id.content)); //修复沉浸式状态栏所带来的adjustResize属性所带来的失效问题
-        initListener();
+
         screenHeight = this.getResources().getDisplayMetrics().heightPixels; //获取屏幕高度
-        keyHeight = screenHeight / 3;//弹起高度为屏幕高度的1/3
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,VerifyActivity.str);
         mSpiner_textView.setAdapter(adapter);
-        mSpiner_textView.setDropDownVerticalOffset(150);//设置Spiner向下偏移量
-        //获取只能被本地应用程序读写的SharedPreferences对象
-        preferences=getSharedPreferences("crazyit",MODE_PRIVATE);
-        editor=preferences.edit();
+        mSpiner_textView.setDropDownVerticalOffset(100);//设置Spiner向下偏移量
+        getSupportActionBar().hide(); //隐藏标题栏
+
 
         //为学校下拉框绑定监听器获取学校名字
         AdapterView.OnItemSelectedListener mOnItemSelectedListener = new AdapterView.OnItemSelectedListener(){
@@ -133,37 +121,12 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
             }
             @Override
             public void afterTextChanged(Editable editable) {
-                if (!TextUtils.isEmpty(editable) && iv_clean_number.getVisibility() == View.GONE) {  //如果不是空的且视图不可见  TextUtils为字符串处理类
-                    iv_clean_number.setVisibility(View.VISIBLE);  //设置可见
-                } else if (TextUtils.isEmpty(editable)) {
-                    iv_clean_number.setVisibility(View.GONE);
-                }
                 if(editable.toString().length()>0)
                     _loginButton.setEnabled(true);
             }
         };
         mInput_number.addTextChangedListener(watcher);
-        // 监听密码框
-        _passwordText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!TextUtils.isEmpty(s) && clean_password.getVisibility() == View.GONE) {
-                    clean_password.setVisibility(View.VISIBLE);
-                } else if (TextUtils.isEmpty(s)) {
-                    clean_password.setVisibility(View.GONE);
-                }
-            }
-        });
         //点击登陆按钮触发事件
         _loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,7 +159,7 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
     }
 
 
-    //登录触发函数
+   //登录触发函数
     public void login() {
         Log.d(TAG, "Login");
         if (!validate()) { //检测输入是否有效函数
@@ -214,13 +177,6 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
     //登录成功
     public void onLoginSuccess(String userName) {
         Toast.makeText(getBaseContext(), "欢迎您："+userName, Toast.LENGTH_LONG).show();
-        //登录成功保存学号和密码在SharedPreferences，通过editor来向preference写入数据
-        editor.putString("studentID",studentId);
-        editor.putString("password",password);
-        //提交所有数据
-        editor.commit();
-        //获取id和密码 id=preferences.getString("studentID",null) 如果id不存在返回null; password=preferences.getString("password",null)
-
         Intent intent = new Intent(LoginActivity.this, StartActivity.class);
         startActivity(intent);
         finish();
@@ -339,115 +295,4 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
             }
         }
     }
-
-
-
-
-    private void initListener() {
-        iv_clean_number.setOnClickListener(this);
-        clean_password.setOnClickListener(this);
-        iv_show_pwd.setOnClickListener(this);
-        /**
-         * 禁止键盘弹起的时候可以滚动
-         */
-        mScrollView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        mScrollView.addOnLayoutChangeListener(new ViewGroup.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-              /* old是改变前的左上右下坐标点值，没有old的是改变后的左上右下坐标点值
-              现在认为只要控件将Activity向上推的高度超过了1/3屏幕高，就认为软键盘弹起*/
-                if (oldBottom != 0 && bottom != 0 && (oldBottom - bottom > keyHeight)) {
-                    Log.e("wenzhihao", "up------>"+(oldBottom - bottom));
-                    int dist = mContent.getBottom() - bottom;
-                    if (dist>0){
-                        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(mContent, "translationY", 0.0f, -dist);
-                        mAnimatorTranslateY.setDuration(300);
-                        mAnimatorTranslateY.setInterpolator(new LinearInterpolator());
-                        mAnimatorTranslateY.start();
-                        //  zoomIn(mLogo, dist);
-                    }
-                    service.setVisibility(View.INVISIBLE);
-
-                } else if (oldBottom != 0 && bottom != 0 && (bottom - oldBottom > keyHeight)) {
-                    Log.e("wenzhihao", "down------>"+(bottom - oldBottom));
-                    if ((mContent.getBottom() - oldBottom)>0){
-                        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(mContent, "translationY", mContent.getTranslationY(), 0);
-                        mAnimatorTranslateY.setDuration(300);
-                        mAnimatorTranslateY.setInterpolator(new LinearInterpolator());
-                        mAnimatorTranslateY.start();
-                        //键盘收回后，logo恢复原来大小，位置同样回到初始位置
-                        // zoomOut(mLogo);
-                    }
-                    service.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-    }
-    //    /**
-//     * 缩小Logo
-//     * @param view
-//     */
-//    public void zoomIn(final View view, float dist) {
-////        view.setPivotY(view.getHeight());
-////        view.setPivotX(view.getWidth() / 2);
-////        AnimatorSet mAnimatorSet = new AnimatorSet();
-////        ObjectAnimator mAnimatorScaleX = ObjectAnimator.ofFloat(view, "scaleX", 1.0f, scale);
-////        ObjectAnimator mAnimatorScaleY = ObjectAnimator.ofFloat(view, "scaleY", 1.0f, scale);
-////        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(view, "translationY", 0.0f, -dist);
-////
-////        mAnimatorSet.play(mAnimatorTranslateY).with(mAnimatorScaleX);
-////        mAnimatorSet.play(mAnimatorScaleX).with(mAnimatorScaleY);
-////        mAnimatorSet.setDuration(300);
-////        mAnimatorSet.start();
-////    }
-////
-////    /**
-////     * f放大logo
-////     * @param view
-////     */
-////    public void zoomOut(final View view) {
-////        view.setPivotY(view.getHeight());
-////        view.setPivotX(view.getWidth() / 2);
-////        AnimatorSet mAnimatorSet = new AnimatorSet();
-////
-////        ObjectAnimator mAnimatorScaleX = ObjectAnimator.ofFloat(view, "scaleX", scale, 1.0f);
-////        ObjectAnimator mAnimatorScaleY = ObjectAnimator.ofFloat(view, "scaleY", scale, 1.0f);
-////        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(view, "translationY", view.getTranslationY(), 0);
-////
-////        mAnimatorSet.play(mAnimatorTranslateY).with(mAnimatorScaleX);
-////        mAnimatorSet.play(mAnimatorScaleX).with(mAnimatorScaleY);
-////        mAnimatorSet.setDuration(300);
-////        mAnimatorSet.start();
-////    }
-
-    //点击事件
-    public void onClick(View v) {
-        int id = v.getId();
-        switch (id) {
-            case R.id.iv_clean_number:
-                mInput_number.setText(""); //清除学号框内容
-                break;
-            case R.id.clean_password:
-                _passwordText.setText("");  //清除密码框内容
-                break;
-            case R.id.iv_show_pwd:
-                if (_passwordText.getInputType() != InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
-                    _passwordText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                    iv_show_pwd.setImageResource(R.drawable.pass_visuable);
-                } else {
-                    _passwordText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    iv_show_pwd.setImageResource(R.drawable.pass_gone);
-                }
-                String pwd = _passwordText.getText().toString();
-                if (!TextUtils.isEmpty(pwd))
-                    _passwordText.setSelection(pwd.length());
-                break;
-        }
-    }
-
 }
