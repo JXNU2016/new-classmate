@@ -17,6 +17,15 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+    }
+    signingConfigs {
+        debug {
+            storeFile file('my-release-key.keystore')
+            storePassword "972994"
+            keyAlias "my-key-alias"
+            keyPassword "972994"
+        }
     }
 }
 
@@ -41,4 +50,13 @@ dependencies {
     implementation 'com.youth.banner:banner:1.4.10'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.github.codbking:PickTime:v1.0.1'
+    implementation "com.yuyakaido.android:card-stack-view:1.0.0-beta9"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/umeng-share-core-6.9.3.jar')
+    implementation files('libs/umeng-share-QQ-simplify-6.9.3.jar')
+    implementation files('libs/umeng-share-sina-simplify-6.9.3.jar')
+    implementation files('libs/umeng-sharetool-6.9.3.jar')
+    implementation files('libs/umeng-share-wechat-simplify-6.9.3.jar')
+    implementation files('libs/umeng-common-1.5.4.jar')
+    implementation project(path: ':PopWindow')
 }

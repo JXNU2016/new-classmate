@@ -21,16 +21,6 @@
         />
 
 
-  <!--  <ImageView
-    android:id="@+id/logo"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:layout_centerHorizontal="true"
-    android:layout_gravity="center"
-    android:background="@null"
-    android:layout_marginTop="50dp"
-    android:src="@drawable/logo" />-->
-
     <ScrollView
         android:id="@+id/scrollView_login"
         android:layout_width="match_parent"
@@ -195,20 +185,31 @@
         </LinearLayout>
 
     </ScrollView>
+
+
+
     <LinearLayout
         android:id="@+id/service"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center"
         android:padding="10dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content">
+
+        <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/logo"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"/>
+
         <TextView
             android:id="@+id/link_signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="center"
             android:text="没有账号？点击创建一个"
             android:textColor="@color/green"
             android:textSize="14dp" />

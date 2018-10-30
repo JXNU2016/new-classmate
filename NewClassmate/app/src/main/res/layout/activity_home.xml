@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout
+<RelativeLayout
     xmlns:titlebar="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/tools"
+    app:ignore="NamespaceTypo">
 
     <com.example.pickerview.widge.CommonTitleBar
         xmlns:titlebar="http://schemas.android.com/apk/res-auto"
         android:id="@+id/titlebar_home"
-        titlebar:fillStatusBar="true"
-        android:statusBarColor="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        titlebar:centerText="新同学"
+        titlebar:centerText="众寻"
         titlebar:centerType="textView"
         titlebar:centerTextSize="20sp"
         titlebar:centerSubText="江西师范大学"
@@ -36,6 +36,33 @@
                 android:layout_height="200dp"
                 android:layout_marginTop="69dp"/>
 
+            <com.example.lenovo.newclassmate.VerticalScrollLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/scroll_layout"
+                android:layout_margin="12dp"
+                app:vsl_animDuration="1000"
+                app:vsl_isCusDuration="true"
+                app:vsl_sleepTime="3500" >
+            </com.example.lenovo.newclassmate.VerticalScrollLayout>
+
+            <com.yuyakaido.android.cardstackview.CardStackView
+                android:id="@+id/cardStackView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:paddingBottom="40dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:clipToPadding="false"
+                app:visibleCount="3"
+                app:swipeThreshold="0.3"
+                app:translationDiff="3"
+                app:scaleDiff="0.02"
+                app:stackFrom="top"
+                app:elevationEnabled="true"
+                app:swipeEnabled="true"
+                app:swipeDirection="horizontal"/>
 
         </LinearLayout>
     </com.example.lenovo.newclassmate.MyScrollView>

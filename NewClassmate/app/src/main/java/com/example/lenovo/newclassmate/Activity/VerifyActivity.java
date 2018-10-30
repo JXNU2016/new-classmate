@@ -157,7 +157,7 @@ public class VerifyActivity extends Activity {
 
         studentId = text.getText().toString();
 
-        if (studentId.isEmpty() || studentId.length()<10) {
+        if (studentId.isEmpty() || studentId.length()<8) {
             text.setError("输入有效的学号");
             valid = false;
         }

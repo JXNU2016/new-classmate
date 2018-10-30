@@ -69,9 +69,18 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
     private static final int REQUEST_SIGNUP = 0;
     private ClientThread clientThread;
     private Handler handler = new Handler();
+    private String name;
     private String schoolName;
     private String studentId;
     private String password;
+    private String sex;
+    private String year;
+    private String month;
+    private String day;
+    private String province;
+    private String city;
+    private String county;
+    private String phone;
 
     @BindView(R.id.input_number) EditText mInput_number;
     @BindView(R.id.input_password) EditText _passwordText;
@@ -96,7 +105,9 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         AllActivity.getInstance().addActivity(this);   //添加此Activity到容器内
+
         ButterKnife.bind(this);
         AndroidBug5497Workaround.assistActivity(findViewById(android.R.id.content)); //修复沉浸式状态栏所带来的adjustResize属性所带来的失效问题
         initListener();
@@ -105,6 +116,7 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,VerifyActivity.str);
         mSpiner_textView.setAdapter(adapter);
         mSpiner_textView.setDropDownVerticalOffset(150);//设置Spiner向下偏移量
+
         //获取只能被本地应用程序读写的SharedPreferences对象
         preferences= getSharedPreferences("land", Context.MODE_PRIVATE);
         editor=preferences.edit();
@@ -216,9 +228,19 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
         //登录成功保存学号和密码在SharedPreferences，通过editor来向preference写入数据
         editor.putString("studentId",studentId);
         editor.putString("password",password);
+        editor.putString("schoolName",schoolName);
+        editor.putString("userName",userName);
+        editor.putString("sex",sex);
+        editor.putString("name",name);
+        editor.putString("year",year);
+        editor.putString("month",month);
+        editor.putString("day",day);
+        editor.putString("province",province);
+        editor.putString("city",city);
+        editor.putString("county",county);
+        editor.putString("phone",phone);
         //提交所有数据
         editor.commit();
-        //获取id和密码 id=preferences.getString("studentID",null) 如果id不存在返回null; password=preferences.getString("password",null)
 
         Intent intent = new Intent(LoginActivity.this, StartActivity.class);
         startActivity(intent);
@@ -237,7 +259,7 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
         studentId = mInput_number.getText().toString();
         password = _passwordText.getText().toString();
 
-        if (studentId.isEmpty() || studentId.length()<10) {
+        if (studentId.isEmpty() || studentId.length()<8) {
             mInput_number.setError("输入有效的学号");
             valid = false;
         } else {
@@ -296,6 +318,15 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
                             if (result.equals("success")) {
                                 String name=jsonObject.getString("Name");
                                 String userName=jsonObject.getString("userName");
+                                sex=jsonObject.getString("sex");
+                                province=jsonObject.getString("province");
+                                city=jsonObject.getString("city");
+                                county=jsonObject.getString("county");
+                                year=jsonObject.getString("year");
+                                month=jsonObject.getString("month");
+                                day=jsonObject.getString("day");
+                                phone=jsonObject.getString("phone");
+                                name=jsonObject.getString("Name");
                                 onLoginSuccess(userName);
                             } else {
                                 onLoginFailed();
@@ -387,42 +418,6 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
             }
         });
     }
-    //    /**
-//     * 缩小Logo
-//     * @param view
-//     */
-//    public void zoomIn(final View view, float dist) {
-////        view.setPivotY(view.getHeight());
-////        view.setPivotX(view.getWidth() / 2);
-////        AnimatorSet mAnimatorSet = new AnimatorSet();
-////        ObjectAnimator mAnimatorScaleX = ObjectAnimator.ofFloat(view, "scaleX", 1.0f, scale);
-////        ObjectAnimator mAnimatorScaleY = ObjectAnimator.ofFloat(view, "scaleY", 1.0f, scale);
-////        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(view, "translationY", 0.0f, -dist);
-////
-////        mAnimatorSet.play(mAnimatorTranslateY).with(mAnimatorScaleX);
-////        mAnimatorSet.play(mAnimatorScaleX).with(mAnimatorScaleY);
-////        mAnimatorSet.setDuration(300);
-////        mAnimatorSet.start();
-////    }
-////
-////    /**
-////     * f放大logo
-////     * @param view
-////     */
-////    public void zoomOut(final View view) {
-////        view.setPivotY(view.getHeight());
-////        view.setPivotX(view.getWidth() / 2);
-////        AnimatorSet mAnimatorSet = new AnimatorSet();
-////
-////        ObjectAnimator mAnimatorScaleX = ObjectAnimator.ofFloat(view, "scaleX", scale, 1.0f);
-////        ObjectAnimator mAnimatorScaleY = ObjectAnimator.ofFloat(view, "scaleY", scale, 1.0f);
-////        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(view, "translationY", view.getTranslationY(), 0);
-////
-////        mAnimatorSet.play(mAnimatorTranslateY).with(mAnimatorScaleX);
-////        mAnimatorSet.play(mAnimatorScaleX).with(mAnimatorScaleY);
-////        mAnimatorSet.setDuration(300);
-////        mAnimatorSet.start();
-////    }
 
     //点击事件
     public void onClick(View v) {

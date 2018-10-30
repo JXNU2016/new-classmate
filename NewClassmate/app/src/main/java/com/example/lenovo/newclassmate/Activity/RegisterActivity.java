@@ -112,7 +112,6 @@ public class RegisterActivity extends BaseActivity {
         schoolName = getIntent().getStringExtra("schoolName");
         studentId = getIntent().getStringExtra("studentId");
 
-        getSupportActionBar().hide();
         ButterKnife.bind(this);
         initProvinceDatas();
         AndroidBug5497Workaround.assistActivity(findViewById(android.R.id.content));
@@ -176,7 +175,6 @@ public class RegisterActivity extends BaseActivity {
                 }
             }
         });
-
 
 
         //设置选择地址模块
@@ -248,6 +246,10 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void onSure(Date date) {
                 String mat="yyyy-MM-dd";
+                String[] Data=new SimpleDateFormat(mat).format(date).split("-");
+                year=Data[0];
+                month=Data[1];
+                day=Data[2];
                 mInput_time.setText( new SimpleDateFormat(mat).format(date));
             }
         });

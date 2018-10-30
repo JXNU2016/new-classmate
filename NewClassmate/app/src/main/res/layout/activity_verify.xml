@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:titlebar="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linear_verify"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    xmlns:titlebar="http://schemas.android.com/apk/res-auto"
     >
 
     <com.example.pickerview.widge.CommonTitleBar

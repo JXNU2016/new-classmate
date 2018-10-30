@@ -1,1 +1,2 @@
-include ':app', ':pickerview'
+include ':app', ':pickerview', ':umeng-share-core-6.9.3', ':PopWindow'
+project(':PopWindow').projectDir = new File('library')
