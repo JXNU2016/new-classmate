@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Question>
+    <question id = "1">
+        <detail>你是否爱干净，东西摆放整齐，勤洗澡洗头</detail>
+        <type>simple</type>
+        <o1>有</o1>
+        <o2>没有</o2>
+    </question>
+    <question id="2">
+        <detail>你会经常堆积自己的衣服、袜子等，然后一次性洗</detail>
+        <type>simple</type>
+        <o1>会</o1>
+        <o2>不会</o2>
+    </question>
+    <question id="3">
+        <detail>你早上一般几点起床</detail>
+        <type>simple</type>
+        <o1>6：30-8：00</o1>
+        <o2>8：00-9：30</o2>
+        <o3>9：30-11：00</o3>
+        <o4>11：00-12：30</o4>
+    </question>
+    <question id="4">
+        <detail>你晚上一般几点休息</detail>
+        <type>simple</type>
+        <o1>20：00~21：30</o1>
+        <o2>21：30~23：00</o2>
+        <o3>23：00~0：30</o3>
+        <o4>0：30~2：00</o4>
+    </question>
+    <question id="5">
+        <detail>你愿意和室友一起租赁寝室的空调</detail>
+        <type>simple</type>
+        <o1>愿意</o1>
+        <o2>不愿意</o2>
+    </question>
+    <question id="6">
+        <detail>如果装了空调，你对于空调的使用强度是怎样的</detail>
+        <type>simple</type>
+        <o1>低强度</o1>
+        <o2>高强度</o2>
+    </question>
+    <question id="7">
+        <detail>你愿意花钱和室友一起装扮自己的寝室</detail>
+        <type>simple</type>
+        <o1>愿意</o1>
+        <o2>不愿意</o2>
+    </question>
+    <question id="8">
+        <detail>你会在寝室里面抽烟、喝酒</detail>
+        <type>simple</type>
+        <o1>会</o1>
+        <o2>不会</o2>
+    </question>
+    <question id="9">
+        <detail>你晚上睡觉是否会打呼噜、磨牙</detail>
+        <type>simple</type>
+        <o1>会</o1>
+        <o2>不会</o2>
+    </question>
+    <question id="10">
+        <detail>你对于睡眠要求较高（光、声音等）</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>不是</o2>
+    </question>
+    <question id="11">
+        <detail>你会经常带你的朋友到寝室一起玩</detail>
+        <type>simple</type>
+        <o1>会</o1>
+        <o2>不会</o2>
+    </question>
+    <question id="12">
+        <detail>你会在寝室里打游戏打得很晚</detail>
+        <type>simple</type>
+        <o1>会</o1>
+        <o2>不会</o2>
+    </question>
+    <question id="13">
+        <detail>你会经常点外卖或打包食物在寝室里面吃</detail>
+        <type>simple</type>
+        <o1>会</o1>
+        <o2>不会</o2>
+    </question>
+    <question id="14">
+        <detail>你会经常在寝室里面吃味道比较重的食物</detail>
+        <type>simple</type>
+        <o1>会</o1>
+        <o2>不会</o2>
+    </question>
+    <question id="15">
+        <detail>你是一个比较要强的人</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="16">
+        <detail>你是一个矜持内敛、不善表达的人</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="17">
+        <detail>你通常比较独立，生活和学习中喜欢独来独往</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="18">
+        <detail>你是一个敏感的人，别人的一些行为常常会引发你的联想</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="19">
+        <detail>你对于寝室里面的私人空间比较看重</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="20">
+        <detail>大学期间，你会经常去图书馆和自习室学习</detail>
+        <type>simple</type>
+        <o1>会</o1>
+        <o2>不会</o2>
+    </question>
+</Question>

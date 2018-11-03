@@ -3,6 +3,9 @@
     <dimen name="titleSize">20dp</dimen>
     <dimen name="buttonWidth">80dp</dimen>
     <dimen name="buttonHeight">30dp</dimen>
-    <dimen name="textSize">15dp</dimen>
-    <dimen name="margintop">15dp</dimen>
+    <dimen name="textSize">15sp</dimen>
+    <dimen name="margintop">20dp</dimen>
+    <dimen name="questionBarHeight">80dp</dimen>
+    <dimen name="questionTextSize">18sp</dimen>
+    <dimen name="optionSize">100dp</dimen>
 </resources>

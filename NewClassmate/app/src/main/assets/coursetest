@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Question>
+    <question id = "1">
+        <detail>你希望在什么时候上课</detail>
+        <type>simple</type>
+        <o1>周一至周五</o1>
+        <o2>周末</o2>
+    </question>
+    <question id="2">
+        <detail>你上选修课的目的是</detail>
+        <type>simple</type>
+        <o1>学习知识、掌握技能</o1>
+        <o2>凑学分</o2>
+    </question>
+    <question id="3">
+        <detail>你更喜欢哪种上课风格的老师</detail>
+        <type>simple</type>
+        <o1>幽默诙谐</o1>
+        <o2>端庄严肃</o2>
+    </question>
+    <question id="4">
+        <detail>你每学期希望选修多少们选修课</detail>
+        <type>simple</type>
+        <o1>一门</o1>
+        <o2>两门</o2>
+        <o3>三门</o3>
+        <o4>不修</o4>
+    </question>
+    <question id="5">
+        <detail>你希望选修课每周的课程节次安排是怎样的</detail>
+        <type>simple</type>
+        <o1>一周2节课</o1>
+        <o2>一周3~4节课</o2>
+    </question>
+    <question id="6">
+        <detail>你更希望以什么形式结课的课程</detail>
+        <type>simple</type>
+        <o1>考试</o1>
+        <o2>论文</o2>
+        <o3>制作ppt</o3>
+        <o4>参加社会实践</o4>
+    </question>
+    <question id="7">
+        <detail>你对于社会科学类的哪些学科比较感兴趣（最多选2个）</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+
+</Question>

@@ -21,4 +21,11 @@
     <color name="accent">#FFFFFF</color>
     <color name="color_eeeeee">#b3d0f9</color>
     <color name="green">#72adff</color>
+    <color name="questionBarColor">#fede11</color>
+    <color name="optionColor">#eceaea</color>
+    <color name="optionTextColor">#706f6f</color>
+    <color name="backOptionShadowColor">#7ff1e0</color>
+    <color name="backOptionendColor">#82f5de</color>
+    <color name="testResultBackgroundColor">#f2f1f1</color>
+    <color name="choiceColor">#6e1b1b</color>
 </resources>

@@ -1,8 +1,10 @@
 package com.example.lenovo.newclassmate;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,15 +17,18 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.lenovo.newclassmate.Activity.ChatFragment;
-import com.example.lenovo.newclassmate.Activity.HomeFragment;
-import com.example.lenovo.newclassmate.Activity.TestFragment;
-import com.example.lenovo.newclassmate.Activity.UserFragment;
+import com.example.lenovo.newclassmate.Fragment.ChatFragment;
+import com.example.lenovo.newclassmate.Fragment.HomeFragment;
+import com.example.lenovo.newclassmate.Fragment.TestFragment;
+import com.example.lenovo.newclassmate.Fragment.UserFragment;
 import com.gyf.barlibrary.ImmersionBar;
 import com.hmy.popwindow.PopItemAction;
 import com.hmy.popwindow.PopWindow;
@@ -32,7 +37,6 @@ import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
-import com.umeng.socialize.media.UMWeb;
 import com.umeng.socialize.shareboard.ShareBoardConfig;
 import com.umeng.socialize.shareboard.SnsPlatform;
 import com.umeng.socialize.utils.ShareBoardlistener;
@@ -100,7 +104,6 @@ public class StartActivity extends FragmentActivity {
         county=preferences.getString("county",null);
         phone=preferences.getString("phone",null);
         userName=preferences.getString("userName",null);
-
         if (studentId == null || password == null) {
             Intent intent = new Intent(StartActivity.this, MainActivity.class);
             startActivity(intent);
