@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+    <TextView
+        android:id="@+id/club_adtv1"
+        android:text="       大学社团是指学生在自愿基础上结成的各种群众性文化、艺术、学术团体。不分年级、系科甚至学校的界限，由兴趣爱好相近的同学组成的兴趣团体。在保证学生完成学习任务和不影响学校正常教学秩序的前提下开展各种活动。目的是活跃学校学习空气，提高学生自治能力，丰富课余生活；交流思想，切磋技艺，互相启迪，增进友谊。"
+        android:textSize="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

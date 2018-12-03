@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Question>
+    <question id = "1">
+        <detail>你更喜欢吃那种水果？</detail>
+        <type>simple</type>
+        <o1 value = "2">草莓</o1>
+        <o2 value = "3">苹果</o2>
+        <o3 value = "5">西瓜</o3>
+        <o4 value="10">菠萝</o4>
+        <o5 value = "15">橘子</o5>
+    </question>
+    <question id="2">
+        <detail>你平时休闲经常去的地方？</detail>
+        <type>simple</type>
+        <o1 value="2">郊外</o1>
+        <o2 value="3">电影院</o2>
+        <o3 value="5">公园</o3>
+        <o4 value="10">商场</o4>
+        <o5 value="15">酒吧</o5>
+        <o5 value="20">练歌房</o5>
+    </question>
+    <question id="3">
+        <detail>你认为容易吸引你的人是？</detail>
+        <type>simple</type>
+        <o1 value="2">有才气的人</o1>
+        <o2 value="3">依赖你的人</o2>
+        <o3 value="5">优雅的人</o3>
+        <o4 value="10">善良的人</o4>
+        <o5 value="15">性情豪放的人</o5>
+    </question>
+    <question id="4">
+        <detail>如果你可以成为一种动物，你希望自己是哪种？</detail>
+        <type>simple</type>
+        <o1 value="2">猫</o1>
+        <o2 value="3">马</o2>
+        <o3 value="5">大象</o3>
+        <o4 value="10">猴子</o4>
+        <o5 value="15">狗</o5>
+        <o6 value="20">狮子</o6>
+    </question>
+    <question id="5">
+        <detail>天气很热，你更愿意选择什么方式解暑？</detail>
+        <type>simple</type>
+        <o1 value="5">游泳</o1>
+        <o2 value="10">喝冷饮</o2>
+        <o3 value="15">开空调</o3>
+    </question>
+    <question id="6">
+        <detail>如果必须与一个你讨厌的动物或昆虫在一起生活，你能容忍哪一个？</detail>
+        <type>simple</type>
+        <o1 value="2">蛇</o1>
+        <o2 value="5">猪</o2>
+        <o3 value="10">老鼠</o3>
+        <o4 value="15">苍蝇</o4>
+    </question>
+    <question id="7">
+        <detail>你喜欢看哪类电影、电视剧？</detail>
+        <type>simple</type>
+        <o1 value="2">悬疑推理类</o1>
+        <o2 value="3">童话神话类</o2>
+        <o3 value="5">自然科学类</o3>
+        <o4 value="10">伦理道德类</o4>
+        <o5 value="15">战争枪战类</o5>
+    </question>
+    <question id="8">
+        <detail>以下哪个是你身边必带的物品？</detail>
+        <type>simple</type>
+        <o1 value="2">打火机</o1>
+        <o2 value="2">口红</o2>
+        <o3 value="3">记事本</o3>
+        <o4 value="5">纸巾</o4>
+        <o5 value="10">手机</o5>
+    </question>
+    <question id="9">
+        <detail>你出行时喜欢坐什么交通工具？</detail>
+        <type>simple</type>
+        <o1 value="2">火车</o1>
+        <o2 value="3">自行车</o2>
+        <o3 value="5">汽车</o3>
+        <o4 value="10">飞机</o4>
+        <o5 value="15">步行</o5>
+    </question>
+    <question id="10">
+        <detail>以下颜色你更喜欢哪种？</detail>
+        <type>simple</type>
+        <o1 value="2">紫</o1>
+        <o2 value="3">黑</o2>
+        <o3 value="5">蓝</o3>
+        <o4 value="8">白</o4>
+        <o5 value="12">黄</o5>
+        <o6 value="15">红</o6>
+    </question>
+    <question id="11">
+        <detail>下列运动中挑选一个你最喜欢的（不一定擅长）？</detail>
+        <type>simple</type>
+        <o1 value="2">瑜伽</o1>
+        <o2 value="3">自行车</o2>
+        <o3 value="5">乒乓球</o3>
+        <o4 value="8">拳击</o4>
+        <o5 value="10">足球</o5>
+        <o6 value="15">蹦极</o6>
+    </question>
+    <question id="12">
+        <detail>如果你拥有一座别墅，你认为它应当建立在哪里？</detail>
+        <type>simple</type>
+        <o1 value="2">湖边</o1>
+        <o2 value="3">草原</o2>
+        <o3 value="5">海边</o3>
+        <o4 value="10">森林</o4>
+        <o5 value="15">城中区</o5>
+    </question>
+    <question id="13">
+        <detail>你更喜欢以下哪种天气？</detail>
+        <type>simple</type>
+        <o1 value="2">雪</o1>
+        <o2 value="3">风</o2>
+        <o3 value="5">雨</o3>
+        <o4 value="10">雾</o4>
+        <o5 value="15">雷电</o5>
+    </question>
+    <question id="14">
+        <detail>你希望自己的窗口在一座30层大楼的第几层？</detail>
+        <type>simple</type>
+        <o1 value="2">七层</o1>
+        <o2 value="3">一层</o2>
+        <o3 value="5">二十三层</o3>
+        <o4 value="10">十八层</o4>
+        <o5 value="15">三十层</o5>
+    </question>
+    <question id="15">
+        <detail>你认为自己更喜欢在以下哪一个城市中生活？</detail>
+        <type>simple</type>
+        <o1 value="1">丽江</o1>
+        <o2 value="3">拉萨</o2>
+        <o3 value="5">昆明</o3>
+        <o4 value="8">西安</o4>
+        <o5 value="10">杭州</o5>
+        <o6 value="15">北京</o6>
+    </question>
+</Question>

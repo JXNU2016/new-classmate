@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Question>
+    <question id = "1">
+        <detail>以下哪句话更适合你</detail>
+        <type>simple</type>
+        <o1>矜持、不善言辞</o1>
+        <o2>活泼开朗、善于与人交际</o2>
+    </question>
+    <question id="2">
+        <detail>哪种说话方式更像你</detail>
+        <type>simple</type>
+        <o1>委婉感性，口头禅“我希望”</o1>
+        <o2>锐利简洁，口头禅“我认为”</o2>
+    </question>
+    <question id="3">
+        <detail>你通常</detail>
+        <type>simple</type>
+        <o1>避免成为注意的焦点</o1>
+        <o2>希望成为注意的焦点</o2>
+    </question>
+    <question id="4">
+        <detail>你享受在自己的小世界里生活</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="5">
+        <detail>你对于很多事情都充满好奇</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="6">
+        <detail>你总是有很多奇思妙想</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="7">
+        <detail>你总能逗的身边的人哈哈大笑</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="8">
+        <detail>你认定的事情一般不会改变</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="9">
+        <detail>你经常能够很好的规划自己每个阶段的生活</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="10">
+        <detail>你有很强的执行力</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="11">
+        <detail>你经常丢三落四</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="12">
+        <detail>你经常错过火车、飞机</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="13">
+        <detail>上课你经常迟到、缺课</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="14">
+        <detail>别人交给你办的事你有时候也会忘记</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="15">
+        <detail>你是一个文艺小青年</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="16">
+        <detail>你宁愿住僻静的郊区，也不愿意住在喧闹的郊区</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="17">
+        <detail>你有写日记的习惯</detail>
+        <type>simple</type>
+        <o1>有</o1>
+        <o2>没有</o2>
+    </question>
+    <question id="18">
+        <detail>你的品味和大众不同，有自己喜欢的东西和见解</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="19">
+        <detail>你喜欢小动物</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="20">
+        <detail>假如在路上你遇到了一个摔倒的老奶奶，你会义无反顾的前去扶她</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="21">
+        <detail>当遇到困难，你总会往好的一方面去想</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="22">
+        <detail>当遇到困难，你总会往好的一方面去想</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="23">
+        <detail>你坚信只要努力了就会有回报</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+</Question>

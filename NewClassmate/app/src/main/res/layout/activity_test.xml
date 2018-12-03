@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:titlebar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/testfragment">
+
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
+        android:id="@+id/titlebar_test"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        titlebar:fillStatusBar="true"
+        titlebar:titleBarColor="#ffffff"
+        titlebar:centerText="测试"
+        titlebar:centerType="textView"
+        />
+
+
+    <com.example.lenovo.newclassmate.MyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="vertical"
+        android:id="@+id/MyScroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="初始测试"
+                android:textColor="@color/black"
+                android:textSize="@dimen/titleSize" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginBottom="@dimen/margintop"
+                android:layout_marginTop="@dimen/margintop"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="15dp">
+
+                <RelativeLayout
+                    android:id="@+id/org_layout0"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/img2"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv0"
+                            android:layout_width="25dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_toLeftOf="@id/tv1"
+                            android:background="@mipmap/deng" />
+                        <TextView
+                            android:id="@+id/tv0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="5dp"
+                            android:text="还未完成测试"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/textSize" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/startT0"
+                        android:layout_width="@dimen/buttonWidth"
+                        android:layout_height="@dimen/buttonHeight"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/testitem_shape"
+                        android:text="开始测试"
+                        android:textColor="@color/colorWhite" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margintop"
+                android:text="分寝测试"
+                android:textColor="@color/colorTestName"
+                android:textSize="@dimen/titleSize" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginBottom="@dimen/margintop"
+                android:layout_marginTop="@dimen/margintop"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="15dp">
+
+                <RelativeLayout
+                    android:id="@+id/org_layout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/img2"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv1"
+                            android:layout_width="25dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_toLeftOf="@id/tv1"
+                            android:background="@mipmap/deng" />
+                        <TextView
+                            android:id="@+id/tv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="5dp"
+                            android:text="还未完成测试"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/textSize" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/startT1"
+                        android:layout_width="@dimen/buttonWidth"
+                        android:layout_height="@dimen/buttonHeight"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/testitem_shape"
+                        android:text="开始测试"
+                        android:textColor="@color/colorWhite" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margintop"
+                android:text="好友推荐测试"
+                android:textColor="@color/black"
+                android:textSize="@dimen/titleSize" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginBottom="@dimen/margintop"
+                android:layout_marginTop="@dimen/margintop"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="10dp">
+
+                <RelativeLayout
+                    android:id="@+id/friend_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/img2"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv2"
+                            android:layout_width="25dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_toLeftOf="@id/tv2"
+                            android:background="@mipmap/deng" />
+
+                        <TextView
+                            android:id="@+id/tv2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="5dp"
+                            android:text="还未完成测试"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/textSize" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/startT2"
+                        android:layout_width="@dimen/buttonWidth"
+                        android:layout_height="@dimen/buttonHeight"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/testitem_shape"
+                        android:text="开始测试"
+                        android:textColor="@color/colorWhite" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margintop"
+                android:text="社团推荐测试"
+                android:textColor="@color/black"
+                android:textSize="@dimen/titleSize" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginBottom="@dimen/margintop"
+                android:layout_marginTop="@dimen/margintop"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="10dp">
+
+                <RelativeLayout
+                    android:id="@+id/class_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/img2"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv3"
+                            android:layout_width="25dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_toLeftOf="@id/tv3"
+                            android:background="@mipmap/deng" />
+
+                        <TextView
+                            android:id="@+id/tv3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="5dp"
+                            android:text="还未完成测试"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/textSize" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/startT3"
+                        android:layout_width="@dimen/buttonWidth"
+                        android:layout_height="@dimen/buttonHeight"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/testitem_shape"
+                        android:text="开始测试"
+                        android:textColor="@color/colorWhite" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margintop"
+                android:text="课程推荐测试"
+                android:textColor="@color/black"
+                android:textSize="@dimen/titleSize" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginBottom="@dimen/margintop"
+                android:layout_marginTop="@dimen/margintop"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="8dp">
+
+                <RelativeLayout
+                    android:id="@+id/org_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/img2"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv4"
+                            android:layout_width="25dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_toLeftOf="@id/tv4"
+                            android:background="@mipmap/deng" />
+
+                        <TextView
+                            android:id="@+id/tv4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="5dp"
+                            android:text="还未完成测试"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/textSize" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/startT4"
+                        android:layout_width="@dimen/buttonWidth"
+                        android:layout_height="@dimen/buttonHeight"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/testitem_shape"
+                        android:text="开始测试"
+                        android:textColor="@color/colorWhite" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+    </com.example.lenovo.newclassmate.MyScrollView>
+
+</RelativeLayout>
