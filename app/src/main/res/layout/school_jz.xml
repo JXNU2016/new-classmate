@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/jz"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/sc_img1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/librarylogo"
+        />
+    <TextView
+        android:id="@+id/jz_tv1"
+        android:layout_below="@id/sc_img1"
+        android:text="             江西师大图书馆的前身是国立中正大学图书馆，始建于1940年。之后，随学校的历史变迁而数易其名。学校先后经历国立中正大学、国立南昌大学、江西师范学院和江西师范大学时期，图书馆也随之易名，1983年更名为江西师范大学图书馆。至今，有瑶湖校区总馆和青山湖校区分馆两处馆舍，总占地面积6万余平方米。"
+        android:textSize="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/jz_tv2"
+        android:layout_width="match_parent"
+        android:textSize="15dp"
+        android:layout_below="@+id/jz_tv1"
+        android:text="              截至2016年底，馆藏纸质书籍290.8万册（其中中文图书263.8万册，外文图书20万册，古籍7万余册），中文期刊8万册、外文期刊1万册；拥有CNKI、超星、万方、SCI等中、外文图书、期刊数据库近60个，电子图书100多万册，其中自建本校专家学者论文数据库、馆藏古籍书目数据库、江西师范大学硕博学位论文数据库、南昌大学时期馆藏书书目数据库等五个特色数据库。"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/jz_tv3"
+        android:textSize="15dp"
+        android:text="              自1984年起，江西省高校图书情报工作委员会秘书处成立并挂靠我校我馆，接受教育部图书馆情报指导委员会和江西省教育厅高教处双重领导和指导。江西省高校数字图书馆中心馆及中心机房均设于本馆，目前共有正式数字资源库14个，服务全省60余所高校师生。"
+        android:layout_below="@id/jz_tv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+   </RelativeLayout>
+
