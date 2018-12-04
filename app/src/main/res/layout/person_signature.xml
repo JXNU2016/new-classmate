@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/primary_dark">
+
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
+        android:id="@+id/person_signature_title"
+        xmlns:titlebar="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        titlebar:centerText="个性签名"
+        titlebar:centerType="textView"
+        titlebar:leftDrawable="@drawable/comm_titlebar_back_normal"
+        titlebar:leftType="textView"
+        titlebar:rightType="textView"
+        titlebar:rightText="完成"
+        titlebar:rightTextColor="@color/actionsheet_red"
+        />
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="60dp"-->
+        <!--app:contentInsetStart="0dp"-->
+        <!--app:layout_collapseMode="pin">-->
+
+        <!--<FrameLayout-->
+            <!--android:id="@+id/fl_layout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:paddingTop="10dp"-->
+            <!--app:layout_collapseMode="pin"-->
+            <!--android:background="@color/white">-->
+
+            <!--<FrameLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_margin="10dp">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/person_signature_back"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:background="@drawable/comm_titlebar_back_normal" />-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="个性签名"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="20dp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/person_signature_finish"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="right"-->
+                    <!--android:text="完成"-->
+                    <!--android:textSize="18dp"-->
+                    <!--android:textColor="@color/actionsheet_red"/>-->
+
+            <!--</FrameLayout>-->
+        <!--</FrameLayout>-->
+    <!--</android.support.v7.widget.Toolbar>-->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/primary_dark">
+    </View>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/white">
+
+    <EditText
+        android:id="@+id/person_signature_edit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:hint="这家伙很懒，什么都没有留下"
+        android:gravity="left"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@null"/>
+    </RelativeLayout>
+</LinearLayout>

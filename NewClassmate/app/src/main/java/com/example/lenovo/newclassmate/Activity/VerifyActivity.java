@@ -30,6 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.lenovo.newclassmate.AllActivity;
 import com.example.lenovo.newclassmate.R;
 import com.example.pickerview.widge.CommonTitleBar;
 
@@ -63,6 +64,7 @@ public class VerifyActivity extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_verify);
+        AllActivity.getInstance().addActivity(this);   //添加此Activity到容器内
 
         text=findViewById(R.id.student_number);
         mNext = findViewById(R.id.btn_next);
@@ -155,7 +157,6 @@ public class VerifyActivity extends Activity {
             intent.putExtra("name",name);
             intent.putExtra("sex",sex);
             startActivity(intent);
-            finish();
             overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         }
 
