@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/gcjs"
+    android:orientation="vertical"
+    android:padding="8dp"
+    >
+    <TextView
+        android:id="@+id/gcfb_tv1"
+        android:text="瑶湖校区图书馆"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/gc_img1"
+        android:layout_width="match_parent"
+        android:layout_height="580dp"
+        android:layout_below="@+id/gcfb_tv1"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/librarygc1" />
+
+    <ImageView
+        android:id="@+id/gc_img2"
+        android:layout_width="match_parent"
+        android:layout_height="580dp"
+        android:layout_below="@+id/gc_img1"
+        android:background="@drawable/librarygc2" />
+    <TextView
+        android:id="@+id/gcfb_tv2"
+        android:text="青山湖校区图书馆"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/gc_img2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/gc_img4"
+        android:layout_below="@id/gcfb_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:background="@drawable/librarygc3"
+        />
+
+
+</RelativeLayout>

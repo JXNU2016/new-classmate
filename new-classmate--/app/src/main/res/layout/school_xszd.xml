@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/xszd"
+    android:padding="8dp">
+    <TextView
+        android:id="@+id/sx_tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:text="找书"
+        android:textSize="20dp"
+        />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/sx_tv2"
+          android:text="1.中图法"
+          android:textSize="15dp"
+          android:layout_below="@id/sx_tv1"/>
+      <ImageView
+          android:id="@+id/sx_img1"
+          android:background="@drawable/libraryxs1"
+          android:layout_below="@id/sx_tv2"
+          android:layout_width="wrap_content"
+          android:layout_height="250dp"
+          />
+     <TextView
+         android:id="@+id/xs_tv3"
+         android:textSize="15dp"
+         android:text="2.书目检索"
+         android:layout_below="@id/sx_img1"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+     <ImageView
+         android:id="@+id/xs_img2"
+         android:layout_below="@id/xs_tv3"
+         android:layout_width="match_parent"
+         android:layout_height="200dp"
+         android:background="@drawable/libraryxs2"
+         />
+    <TextView
+        android:id="@+id/xs_tv4"
+        android:textSize="15dp"
+        android:text="   在浏览器输入图书馆域名：tsg.jxnu.edu.cn，按回车键进入图书馆主页。在左侧菜单栏中，点击“馆藏书目”，输入图书的对应检索词，即可查询到图书在我校图书馆的馆藏地址，根据索书号，去对应书架上寻找书籍"
+        android:layout_below="@id/xs_img2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/xs_tv5"
+        android:textSize="20dp"
+        android:textColor="#000"
+        android:layout_marginTop="20dp"
+        android:text="借书"
+        android:layout_below="@id/xs_tv4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/xs_tv6"
+        android:textSize="15dp"
+        android:text="1.借书流程"
+        android:layout_below="@id/xs_tv5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/sx_img3"
+        android:layout_below="@+id/xs_tv6"
+        android:background="@drawable/libraryxs3"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+    <TextView
+        android:id="@+id/xs_tv7"
+        android:layout_below="@id/sx_img3"
+        android:text="2.借阅权限"
+        android:textSize="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/xs_tv8"
+        android:text="   研究生、本科生每人一次可累计外借图书30册，借期为两个月，在不超期或无逾期费用的情况下可续借一次，可在图书馆主页或官微上自助办理续借。寒暑假期间到期的图书，还书日期会自动顺延到开学后，具体以图书馆微信和主页通知为准"
+        android:textSize="15dp"
+        android:layout_below="@id/xs_tv7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/xs_tv9"
+        android:text="还书"
+        android:textSize="20dp"
+        android:textColor="#000"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/xs_tv8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/xs_tv10"
+        android:text="还书流程"
+        android:textSize="15dp"
+        android:layout_below="@id/xs_tv9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/xs_img4"
+        android:layout_below="@id/xs_tv10"
+        android:background="@drawable/libraryxs4"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        />
+    <TextView
+        android:id="@+id/xs_tv11"
+        android:text="图书续借"
+        android:textSize="15dp"
+        android:layout_below="@id/xs_img4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/xs_tv12"
+        android:text="    进入图书馆主页并登录“我的图书馆”后，就可以查看自己的图书借阅状况等。若想延长图书的借阅期限，请点击对应图书后的“续借”选项。除此之外，图书馆微信公众号及移动图书馆客户端均可在登录后续借图书"
+        android:textSize="15dp"
+        android:layout_below="@id/xs_tv11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

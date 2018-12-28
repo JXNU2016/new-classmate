@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">New Classmate</string>
+    <string name="auto_name">所属院校</string>
+    <string name="please_input_limit_pwd">请输入数字或字母</string>
+</resources>

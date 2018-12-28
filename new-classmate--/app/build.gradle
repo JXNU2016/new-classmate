@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+    defaultConfig {
+        applicationId "com.example.lenovo.newclassmate"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+    }
+    signingConfigs {
+        debug {
+            storeFile file('my-release-key.keystore')
+            storePassword "972994"
+            keyAlias "my-key-alias"
+            keyPassword "972994"
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:cardview-v7:27.+'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.wuhenzhizao:titlebar:1.1.3'
+    implementation 'com.github.donkingliang:LabelsView:1.4.6'
+    implementation project(':pickerview')
+    implementation 'com.mcxiaoke.volley:library:1.0.19'
+    implementation 'com.ycl.tabview.library:tabviewlibrary:1.0'
+    implementation 'com.gyf.immersionbar:immersionbar:2.3.2-beta01'
+    implementation 'com.youth.banner:banner:1.4.10'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.github.codbking:PickTime:v1.0.1'
+    implementation 'com.makeramen:roundedimageview:2.2.1'
+    implementation 'com.yuyakaido.android:card-stack-view:1.0.0-beta9'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/umeng-share-core-6.9.3.jar')
+    implementation files('libs/umeng-share-QQ-simplify-6.9.3.jar')
+    implementation files('libs/umeng-share-sina-simplify-6.9.3.jar')
+    implementation files('libs/umeng-sharetool-6.9.3.jar')
+    implementation files('libs/umeng-share-wechat-simplify-6.9.3.jar')
+    implementation files('libs/umeng-common-1.5.4.jar')
+    implementation project(path: ':PopWindow')
+    implementation files('libs/dom4j-2.0.2.jar')
+    implementation 'com.github.sd6352051:NiftyDialogEffects:v1.0.3'
+}

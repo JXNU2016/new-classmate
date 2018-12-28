@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
+        android:id="@+id/change_password_title"
+        xmlns:titlebar="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        titlebar:centerText="修改密码"
+        titlebar:centerType="textView"
+        titlebar:leftDrawable="@drawable/comm_titlebar_back_normal"
+        titlebar:leftType="textView"
+        />
+
+    <EditText
+        android:id="@+id/old_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:hint="原密码"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+       android:layout_margin="15dp"
+        android:background="@color/primary_dark">
+    </View>
+    <EditText
+        android:id="@+id/new_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@null"
+        android:hint="新密码"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="15dp"
+        android:background="@color/primary_dark">
+    </View>
+    <EditText
+        android:id="@+id/confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@null"
+        android:hint="确认密码"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="15dp"
+        android:background="@color/primary_dark">
+    </View>
+
+    <Button
+        android:id="@+id/exit_user"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_btn_login_selected"
+        android:text="确定"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="18dp" />
+
+</LinearLayout>

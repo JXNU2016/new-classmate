@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Question>
+    <question id = "1">
+        <detail>你认为大学生有没有必要参加社团</detail>
+        <type>simple</type>
+        <o1>有</o1>
+        <o2>没有</o2>
+    </question>
+    <question id="2">
+        <detail>你想加入什么规模的社团</detail>
+        <type>simple</type>
+        <o1>校级社团（人数较多）</o1>
+        <o2>学院名下（人数较少）</o2>
+    </question>
+    <question id="3">
+        <detail>你加入社团的目的是什么</detail>
+        <type>simple</type>
+        <o1>学习技能</o1>
+        <o2>结交朋友</o2>
+    </question>
+    <question id="4">
+        <detail>你希望加入社团的性质什么样的</detail>
+        <type>simple</type>
+        <o1>为他人服务的、公益社团</o1>
+        <o2>兴趣社团</o2>
+    </question>
+    <question id="5">
+        <detail>你愿意加入以下哪种社团</detail>
+        <type>simple</type>
+        <o1>经常有任务，能提升自己</o1>
+        <o2>偶尔有活动</o2>
+    </question>
+    <question id="6">
+        <detail>你计划加入多少个社团</detail>
+        <type>simple</type>
+        <o1>1-2个</o1>
+        <o2>3-4个</o2>
+    </question>
+    <question id="7">
+        <detail>你总能逗的身边的人哈哈大笑</detail>
+        <type>simple</type>
+        <o1>是</o1>
+        <o2>否</o2>
+    </question>
+    <question id="8">
+        <detail>你喜欢哪种类型的社团</detail>
+        <type>multiple</type>
+        <o1>理论研究类社团</o1>
+        <o2>体育竞技类社团</o2>
+        <o3>公共关系类社团</o3>
+        <o4>专业实践类社团</o4>
+        <o5>科技创新类社团</o5>
+        <o5>艺术特长类社团</o5>
+        <o6>文化传承类社团</o6>
+        <o7>社会服务类社团</o7>
+        <o8>学习指导类社团</o8>
+    </question>
+</Question>

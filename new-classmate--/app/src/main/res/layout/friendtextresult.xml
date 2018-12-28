@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="10dp">
+    <android.support.v7.widget.CardView
+        android:id="@+id/friends_card"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:elevation="5dp"
+        app:cardCornerRadius="20dp">
+
+        <ImageView
+            android:id="@+id/img1"
+            android:background="@drawable/friends"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            />
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        android:id="@+id/friends_card2"
+        android:layout_below="@id/friends_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margintop"
+        android:elevation="5dp"
+        app:cardCornerRadius="20dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv1"
+            android:text="亲爱的同学您好"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:textAlignment="gravity"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_below="@id/tv1"
+            android:layout_marginTop="10dp"
+            android:text="          恭喜你已经完成好友推荐测试了,结果已经返回到首页的卡片上啦。罗曼罗兰说过“有了朋友，生命才显出它全部价值；一个人活着是为了朋友；保持生命的完整，不受时间侵蚀，也是为了朋友”，希望我们给你推荐的好友会和你志趣相投，成为你生活中的一块拼图。"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="160dp" />
+        <Button
+            android:id="@+id/btn1"
+            android:layout_below="@id/tv2"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="250dp"
+            android:text="返回主页"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:background="@android:color/transparent"
+            android:layout_width="120dp"
+            android:layout_height="50dp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+
+
+</RelativeLayout>

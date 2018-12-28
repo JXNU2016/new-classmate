@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Question>
+    <question id = "1">
+        <detail>你希望在什么时候上课</detail>
+        <type>simple</type>
+        <o1>周一至周五</o1>
+        <o2>周末</o2>
+    </question>
+    <question id="2">
+        <detail>你上选修课的目的是</detail>
+        <type>simple</type>
+        <o1>学习知识、掌握技能</o1>
+        <o2>凑学分</o2>
+    </question>
+    <question id="3">
+        <detail>你更喜欢哪种上课风格的老师</detail>
+        <type>simple</type>
+        <o1>幽默诙谐</o1>
+        <o2>端庄严肃</o2>
+    </question>
+    <question id="4">
+        <detail>你每学期希望选修多少们选修课</detail>
+        <type>simple</type>
+        <o1>一门</o1>
+        <o2>两门</o2>
+        <o3>三门</o3>
+        <o4>不修</o4>
+    </question>
+    <question id="5">
+        <detail>你希望选修课每周的课程节次安排是怎样的</detail>
+        <type>simple</type>
+        <o1>一周2节课</o1>
+        <o2>一周3~4节课</o2>
+    </question>
+    <question id="6">
+        <detail>你更希望以什么形式结课的课程</detail>
+        <type>simple</type>
+        <o1>考试</o1>
+        <o2>论文</o2>
+        <o3>制作ppt</o3>
+        <o4>参加社会实践</o4>
+    </question>
+    <question id="7">
+        <detail>你对于社会科学类的哪些学科比较感兴趣?</detail>
+        <type>multiple</type>
+        <o1>哲类</o1>
+        <o2>经济学</o2>
+        <o3>法学</o3>
+        <o4>教育学</o4>
+        <o5>文学</o5>
+        <o6>历史学</o6>
+        <o7>管理学</o7>
+        <o8>政治</o8>
+        <o9>马克思主义理论</o9>
+        <o10>新闻传播学</o10>
+        <o11>社会学</o11>
+        <o12>中国语言文学</o12>
+        <o13>外国语言文学</o13>
+        <o14>军事学</o14>
+    </question>
+    <question id="8">
+            <detail>你对人文科学类的哪些学科比较感兴趣?</detail>
+            <type>multiple</type>
+            <o1>语言学 </o1>
+            <o2>文学</o2>
+            <o3>历史学</o3>
+            <o4>哲学</o4>
+            <o5>考古学</o5>
+            <o6>伦理学</o6>
+            <o7>美学</o7>
+            <o8>宗教学</o8>
+            <o9>经济学</o9>
+            <o10>政治学</o10>
+            <o11>法学</o11>
+        </question>
+        <question id="9">
+               <detail>你对自然科学类的哪些学科比较感兴趣?</detail>
+               <type>multiple</type>
+               <o1>数学</o1>
+               <o2>物理学</o2>
+               <o3>化学</o3>
+               <o4>生物科学</o4>
+               <o5>天文学</o5>
+               <o6>地质学</o6>
+               <o7>地理科学</o7>
+               <o8>海洋科学</o8>
+               <o9>大气科学</o9>
+               <o10>力学</o10>
+               <o11>电子信息学</o11>
+               <o12>材料科学</o12>
+               <o13>环境科学</o13>
+               <o14>心理学</o14>
+               <o15>统计学</o15>
+               <o16>生物学</o16>
+           </question>
+     <question id="10">
+                    <detail>你对艺术体育类哪些学科比较感兴趣?</detail>
+                    <type>multiple</type>
+                    <o1>美术</o1>
+                    <o2>音乐</o2>
+                    <o3>播音与主持艺术</o3>
+                    <o4>服装</o4>
+                    <o5>空乘</o5>
+                    <o6>影视表演</o6>
+                    <o7>编导制作</o7>
+                    <o8>书法</o8>
+                    <o9>影视赏析</o9>
+                    <o10>体育运动</o10>
+                    <o11>体育教育</o11>
+                    <o12>体育舞蹈</o12>
+                </question>
+
+
+</Question>

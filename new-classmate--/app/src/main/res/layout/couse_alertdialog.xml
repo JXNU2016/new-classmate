@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+    <TextView
+        android:id="@+id/course_adtv2"
+        android:text="       大学里面的选修课是学校帮助学生丰富知识，拓宽知识面所开设的课程，课程丰富多彩，各个领域都有所涉略，学生可以自由选择课程和任课老师。大学选修课一般可以概括分为两类：公共选修课和专业选修课 ，选修课的学分要求一般是毕业的硬性指标，在修满学分后才有毕业资格，部分学校的学费与所选选修课的学分数相关。选课开始时间一般是大一下学期或者大二上学期，之后每个学期都可以选择选修课。"
+        android:textSize="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

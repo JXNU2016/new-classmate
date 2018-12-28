@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<CheckedTextView android:id="@+id/optionButton"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@drawable/optionbutton_color"
+    android:gravity="center_vertical|center_horizontal"
+    android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+    android:padding="10dp"
+    android:text="西瓜"
+    android:textAlignment="gravity"
+    android:layout_marginTop="10dp"
+    android:textSize="15dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
+
