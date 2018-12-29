@@ -1,18 +1,24 @@
 package com.example.lenovo.newclassmate.Activity.TestActivity;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 
 import com.example.lenovo.newclassmate.Adapter.QuestionItemAdapter;
+import com.example.lenovo.newclassmate.AllActivity;
 import com.example.lenovo.newclassmate.Bean.QuestionBean;
+import com.example.lenovo.newclassmate.DAO.CustomViewPager;
 import com.example.lenovo.newclassmate.DAO.LoadQuestionDataDao;
 import com.example.lenovo.newclassmate.R;
 
@@ -30,21 +36,30 @@ public class CourseTestActivity extends FragmentActivity implements ViewPager.On
     private final String toNext = "courseJumpToNext";
     private final String toPre = "courseJumpToPrevious";
     public static List<String> choiceList = new LinkedList<>();
-    private ViewPager viewPager;
+    private CustomViewPager viewPager;
     private QuestionItemAdapter questionItemAdapter;
-    private int index;
+    private int index ;
     private LoadQuestionDataDao loadQuestionDataDao;
     private BroadcastReceiver broadcastReceiver;
     public LocalBroadcastManager localBroadcastManager;
     public static List<QuestionBean> questionBeanList;
+    private String studentId;
+    private String schoolName;
+    SharedPreferences preferences;//创建SharedPreferences保存登录学号和密码
+    SharedPreferences.Editor editor; //editor对象向SharedPreferences写入数据
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_model);
-
+        AllActivity.getInstance().addActivity(this);
         initData();
         initView();
+
+        preferences= getSharedPreferences("land", Context.MODE_PRIVATE);
+        schoolName=preferences.getString("schoolName",null);
+        studentId=preferences.getString("studentId",null);
 
         broadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -53,8 +68,8 @@ public class CourseTestActivity extends FragmentActivity implements ViewPager.On
                     String choice = intent.getStringExtra("optionValue");
                     choiceList.add(choice);
                     NextPage();
+
                 } else if (intent.getAction().equals(toPre)) {
-//                    choiceList.remove(choiceList.size() - 1);
                     PreviousPage();
                 }
             }
@@ -64,6 +79,10 @@ public class CourseTestActivity extends FragmentActivity implements ViewPager.On
         filter.addAction(toNext);
         filter.addAction(toPre);
         localBroadcastManager.registerReceiver(broadcastReceiver, filter);
+
+
+
+
     }
 
     private void initData(){
@@ -82,9 +101,36 @@ public class CourseTestActivity extends FragmentActivity implements ViewPager.On
         questionItemAdapter.setLength(questionBeanList.size());
         questionItemAdapter.setTag("course");
         viewPager = findViewById(R.id.viewPager);
-        viewPager.setCurrentItem(0);
+        viewPager.setScanScroll(false);
+        viewPager.setCurrentItem(index);
         viewPager.setAdapter(questionItemAdapter);
         viewPager.setOnPageChangeListener(this);
+    }
+    /**
+     * 监听返回键，防止误碰返回键退出测试，触碰返回键弹出对话框
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {//当返回按键被按下
+            AlertDialog.Builder dialog = new AlertDialog.Builder(CourseTestActivity.this);//新建一个对话框
+            dialog.setMessage("确定要退出测试吗?");//设置提示信息
+            //设置确定按钮并监听
+            dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();//结束当前Activity
+                }
+            });
+            //设置取消按钮并监听
+            dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //这里什么也不用做
+                }
+            });
+            dialog.show();//最后不要忘记把对话框显示出来
+        }
+        return false;
     }
 
 
@@ -119,6 +165,17 @@ public class CourseTestActivity extends FragmentActivity implements ViewPager.On
 
     @Override
     public void onPageScrollStateChanged(int state) {
+
         index = state;
+    }
+
+    public String getStudentId()
+    {
+        return studentId;
+    }
+
+    public String getSchoolName()
+    {
+        return schoolName;
     }
 }

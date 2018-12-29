@@ -314,18 +314,20 @@
                 android:gravity="center">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:text="音乐标签"
+                    android:text="个人标签"
                     android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/music_text"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text=""
+                    android:gravity="right"
+                    android:singleLine="true"
                     android:textSize="15dp"/>
                 <ImageView
                     android:layout_width="15dp"

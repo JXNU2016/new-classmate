@@ -22,7 +22,7 @@
           android:layout_below="@id/sx_tv1"/>
       <ImageView
           android:id="@+id/sx_img1"
-          android:background="@drawable/libraryxs1"
+          android:background="@mipmap/libraryxs1"
           android:layout_below="@id/sx_tv2"
           android:layout_width="wrap_content"
           android:layout_height="250dp"
@@ -39,7 +39,7 @@
          android:layout_below="@id/xs_tv3"
          android:layout_width="match_parent"
          android:layout_height="200dp"
-         android:background="@drawable/libraryxs2"
+         android:background="@mipmap/libraryxs2"
          />
     <TextView
         android:id="@+id/xs_tv4"
@@ -67,7 +67,7 @@
     <ImageView
         android:id="@+id/sx_img3"
         android:layout_below="@+id/xs_tv6"
-        android:background="@drawable/libraryxs3"
+        android:background="@mipmap/libraryxs3"
         android:layout_width="match_parent"
         android:layout_height="200dp" />
     <TextView
@@ -104,7 +104,7 @@
     <ImageView
         android:id="@+id/xs_img4"
         android:layout_below="@id/xs_tv10"
-        android:background="@drawable/libraryxs4"
+        android:background="@mipmap/libraryxs4"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         />

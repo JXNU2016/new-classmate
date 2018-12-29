@@ -7,32 +7,31 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.lenovo.newclassmate.Activity.TestActivity.DormitoryTestActivity;
+import com.example.lenovo.newclassmate.Activity.TestActivity.OrganizationTestActivity;
 import com.example.lenovo.newclassmate.Adapter.OptionsGridViewAdapter;
+import com.example.lenovo.newclassmate.Adapter.myArrayAdapter;
 import com.example.lenovo.newclassmate.Bean.QuestionBean;
 import com.example.lenovo.newclassmate.Bean.QusetionOptionBean;
 import com.example.lenovo.newclassmate.R;
-
+import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * @author Eskii
- *          分寝测试碎片
  */
 
 public class DormitoryTestFragment extends Fragment {
-
     /**
      * gridView:选项格子布局
      * doneQ:已做题目数量
@@ -46,7 +45,8 @@ public class DormitoryTestFragment extends Fragment {
      * questionOptionBeanList:当前题目的选项队列
      */
     private GridView gridView;
-    private TextView doneQ,allQ;
+    private ListView listView;
+    private TextView doneQ, allQ;
     private TextView questionText;
     private Button backButton, nextButton;
     private int index;
@@ -57,6 +57,8 @@ public class DormitoryTestFragment extends Fragment {
     public LocalBroadcastManager localBroadcastManager;
     private final String toNext = "dormitoryJumpToNext";
     private final String toPre = "dormitoryJumpToPrevious";
+    private myArrayAdapter myArrayAdapter;
+
 
     public DormitoryTestFragment() {
     }
@@ -64,33 +66,53 @@ public class DormitoryTestFragment extends Fragment {
     @SuppressLint("ValidFragment")
     public DormitoryTestFragment(int index) {
         this.index = index;
-        questionBean = DormitoryTestActivity.questionBeanList.get(index);
+        questionBean = DormitoryTestActivity.questionBeanList.get(index); //index 是当前fragment下标，相当于是Viewpager中第几个fragment,传给questionBeanList 相当于这个fragment要加载对应的questionBeanList中的第几个问题
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        if (questionBean.getType().equals("simple")) {
 
-        View view = inflater.inflate(R.layout.test_item, container, false);
+            View view = inflater.inflate(R.layout.test_item, container, false);
+            localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
 
-        localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
+            gridView = view.findViewById(R.id.options);
+            allQ = view.findViewById(R.id.allQ);
+            doneQ = view.findViewById(R.id.doneQ);
+            questionText = view.findViewById(R.id.questionText);
+            backButton = view.findViewById(R.id.backButton);
+            nextButton = view.findViewById(R.id.nextButton);
+            qusetionOptionBeanList = questionBean.getQusetionOptionBeanList();
+            optionsGridViewAdapter = new OptionsGridViewAdapter(qusetionOptionBeanList, getActivity());
 
-        gridView = view.findViewById(R.id.options);
-        allQ = view.findViewById(R.id.allQ);
-        doneQ = view.findViewById(R.id.doneQ);
-        questionText = view.findViewById(R.id.questionText);
-        backButton = view.findViewById(R.id.backButton);
-        nextButton = view.findViewById(R.id.nextButton);
-        qusetionOptionBeanList = questionBean.getQusetionOptionBeanList();
-        optionsGridViewAdapter = new OptionsGridViewAdapter(questionBean.getQusetionOptionBeanList(), getActivity());
+            allQ.setText(DormitoryTestActivity.questionBeanList.size()+"");
+            type = questionBean.getType();
+            setQuestionType(type);  //根据题目类型设置选项可选数量
+            setButton();    //设置按钮
+            doneQ.setText((index + 1) + "");    //更新当前题号
 
-        allQ.setText(DormitoryTestActivity.questionBeanList.size()+"");
-        type = questionBean.getType();
-        setQuestionType(type);  //根据题目类型设置选项可选数量
-        setButton();    //设置按钮
-        gridView.setAdapter(optionsGridViewAdapter);
-        doneQ.setText((index+1) + "");    //更新当前题号
-        return view;
+            return view;
+
+        } else {
+            View view = inflater.inflate(R.layout.multiple_item, container, false);
+            localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
+            listView = view.findViewById(R.id.options);
+            allQ = view.findViewById(R.id.allQ);
+            doneQ = view.findViewById(R.id.doneQ);
+            questionText = view.findViewById(R.id.questionText);
+            backButton = view.findViewById(R.id.backButton);
+            nextButton = view.findViewById(R.id.nextButton);
+            qusetionOptionBeanList = questionBean.getQusetionOptionBeanList();
+
+            allQ.setText(DormitoryTestActivity
+                    .questionBeanList.size() + "");
+            type = questionBean.getType();
+            setQuestionType(type);  //根据题目类型设置选项可选数量
+            setButton();    //设置按钮;
+            doneQ.setText((index + 1) + "");    //更新当前题号
+            return view;
+        }
     }
 
     @Override
@@ -106,8 +128,9 @@ public class DormitoryTestFragment extends Fragment {
         switch (type) {
 
             case "simple":  //单选
+                gridView.setAdapter(optionsGridViewAdapter);
                 questionText.setText(questionBean.getDetails());
-                gridView.setChoiceMode(GridView.CHOICE_MODE_SINGLE);
+                gridView.setChoiceMode(GridView.CHOICE_MODE_SINGLE); //单选
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -119,15 +142,19 @@ public class DormitoryTestFragment extends Fragment {
                 });
                 break;
             case "multiple":    //多选
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("（多选）");
-                spannableStringBuilder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.black)), 0, 5, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                spannableStringBuilder.append(questionBean.getDetails());
-                questionText.setText(spannableStringBuilder);
-                gridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
-                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                List<String> questionList = new ArrayList<>();
+                for (QusetionOptionBean qusetionOptionBean : qusetionOptionBeanList) {
+                    questionList.add(qusetionOptionBean.getDetails());
+                }
+                myArrayAdapter = new myArrayAdapter(getActivity(),R.layout.option_multiple);
+                listView.setAdapter(myArrayAdapter);
+                myArrayAdapter.addAll(questionList);
+                questionText.setText(questionBean.getDetails() + "（多选）");
+                listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        optionsGridViewAdapter.notifyDataSetChanged();
+                    public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+
                     }
                 });
                 break;
@@ -153,18 +180,17 @@ public class DormitoryTestFragment extends Fragment {
             });
         }
 
-        if (questionBean.getType() == "multiple" && index < 15) {
+        if (questionBean.getType().equals("multiple")) {
             nextButton.setVisibility(View.VISIBLE);
             nextButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(toNext);   //跳到下一页
-                    long ids[] = gridView.getCheckedItemIds();
+                    long ids[] = listView.getCheckedItemIds();
                     int length = ids.length;
-                    String choice = null;
-
+                    String choice = "";
                     for (int i = 0; i < length; i++) {
-                        choice += qusetionOptionBeanList.get((int)ids[i]).getDetails();
+                        choice += qusetionOptionBeanList.get((int) ids[i]).getDetails();
                     }
                     intent.putExtra("optionValue", choice);   //放入选择的选项
                     localBroadcastManager.sendBroadcast(intent);
@@ -174,4 +200,6 @@ public class DormitoryTestFragment extends Fragment {
             nextButton.setVisibility(View.GONE);
         }
     }
+
 }
+

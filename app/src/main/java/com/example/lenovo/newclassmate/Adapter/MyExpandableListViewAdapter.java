@@ -67,13 +67,13 @@ public  class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
         ImageView imageView2;
 
     }
-      class  ChildViewHolder{
+    class  ChildViewHolder{
         TextView textView;
     }
 
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
-         GroupViewHolder groupViewHolder;
+        GroupViewHolder groupViewHolder;
 
         if (view == null){
             view= LayoutInflater.from(context).inflate(R.layout.club_group,viewGroup,false);
@@ -93,7 +93,7 @@ public  class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-         ChildViewHolder childViewHolder;
+        ChildViewHolder childViewHolder;
         if (view == null){
             view = LayoutInflater.from(context).inflate(R.layout.club_child,viewGroup,false);
             childViewHolder = new ChildViewHolder();

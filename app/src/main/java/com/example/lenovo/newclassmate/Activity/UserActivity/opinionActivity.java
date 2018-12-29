@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lenovo.newclassmate.Activity.User_Activity_children;
+import com.example.lenovo.newclassmate.AllActivity;
 import com.example.lenovo.newclassmate.R;
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
 
@@ -23,12 +24,13 @@ public class opinionActivity extends Activity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.opinion_send);
+        AllActivity.getInstance().addActivity(this);
         //设置标题
         ((CommonTitleBar) findViewById(R.id.opinion_send_title)).setListener(new CommonTitleBar.OnTitleBarListener() {
             @Override
             public void onClicked(View v, int action, String extra) {
                 if (action == CommonTitleBar.ACTION_LEFT_TEXT) {
-                    onBackPressed();
+                    finish();
                 }if(action==CommonTitleBar.ACTION_RIGHT_TEXT){
                     Toast.makeText(opinionActivity.this, "提交成功", Toast.LENGTH_LONG).show();
                     finish();

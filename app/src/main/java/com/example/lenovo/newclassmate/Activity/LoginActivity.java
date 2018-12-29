@@ -71,6 +71,8 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
     private String city;
     private String county;
     private String phone;
+    private String label;
+    private String signature;
 
     @BindView(R.id.input_number) EditText mInput_number;
     @BindView(R.id.input_password) EditText _passwordText;
@@ -228,6 +230,8 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
         editor.putString("city",city);
         editor.putString("county",county);
         editor.putString("phone",phone);
+        editor.putString("label",label);
+        editor.putString("signature",signature);
         //提交所有数据
         editor.commit();
 
@@ -316,6 +320,8 @@ public class LoginActivity extends Activity implements  View.OnClickListener{
                                 day=jsonObject.getString("day");
                                 phone=jsonObject.getString("phone");
                                 name=jsonObject.getString("Name");
+                                label=jsonObject.getString("label");
+                                signature=jsonObject.getString("signature");
                                 onLoginSuccess(userName);
                             } else {
                                 onLoginFailed();

@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
+        android:id="@+id/about_us_text"
+        xmlns:titlebar="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="消息页面"
-        android:textSize="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        titlebar:centerText="个人消息"
+        titlebar:centerType="textView"
+        />
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
 
-</RelativeLayout>
+    <!--</android.support.v7.widget.RecyclerView>-->
+<TextView
+    android:layout_gravity="center"
+    android:layout_marginTop="200dp"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="20sp"
+    android:text="暂无个人消息"/>
+</LinearLayout>

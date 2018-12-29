@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+    <LinearLayout
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="70dp"
+        android:layout_width="300dp"
+        android:layout_height="420dp"
+        android:background="@drawable/testborder"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/questionText"
+            android:layout_width="match_parent"
+            android:layout_height="78dp"
+            android:background="@drawable/testbarbackground"
+            android:gravity="center_horizontal|center_vertical"
+            android:padding="10dp"
+            android:text="你更喜欢被认为是一个"
+            android:textColor="@color/black"
+            android:textSize="@dimen/questionTextSize" />
+
+        <ListView
+            android:id="@+id/options"
+            android:layout_width="280dp"
+            android:layout_height="300dp"
+            android:padding="10dp"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:verticalSpacing="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/doneQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textColor="@color/questionBarColor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/allQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/backoption_shape"
+            android:text="上一题"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/backoption_shape"
+            android:text="下一题"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</RelativeLayout>

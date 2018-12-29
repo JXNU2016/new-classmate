@@ -91,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/cat"
+            android:src="@mipmap/child_head"
             />
             <!--<com.makeramen.roundedimageview.RoundedImageView-->
                 <!--android:id="@+id/round_image"-->

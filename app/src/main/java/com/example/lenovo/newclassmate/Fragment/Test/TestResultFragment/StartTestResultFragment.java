@@ -2,6 +2,7 @@ package com.example.lenovo.newclassmate.Fragment.Test.TestResultFragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.lenovo.newclassmate.Activity.TestActivity.StartTestActivity;
 import com.example.lenovo.newclassmate.R;
+import com.example.lenovo.newclassmate.StartActivity;
 
 import java.util.List;
 
@@ -57,6 +59,7 @@ public class StartTestResultFragment extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(getActivity(),StartActivity.class));
                 getActivity().finish();
             }
         });

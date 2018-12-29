@@ -1,52 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Club"
     android:orientation="vertical"
     android:padding="8dp">
-    <TextView
-        android:id="@+id/st_textview_1"
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar xmlns:titlebar="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/Club_title"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="标题栏"
-        android:textSize="20dp"
-        android:textAlignment="center"/>
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardview"
-        android:layout_below="@+id/st_textview_1"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp">
-        <ImageView
-            android:id="@+id/imageview_1"
-            android:layout_width="380dp"
-            android:layout_height="190dp"
-            android:background="@drawable/club"
-            tools:layout_editor_absoluteX="2dp"
-            tools:layout_editor_absoluteY="2dp" />
-        <Button
-            android:id="@+id/imagbtu_3"
-            android:layout_gravity="end"
-            android:layout_marginTop="150dp"
-            android:background="@color/cardview_shadow_end_color"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:text="点击了解"
-            android:textColor="#ffffff"/>
-    </android.support.v7.widget.CardView>
-
-    <ExpandableListView
-        android:id="@+id/st_view"
-        android:layout_marginTop="20dp"
+        titlebar:centerText="社团简介"
+        titlebar:centerType="textView"
+        titlebar:leftDrawable="@drawable/comm_titlebar_back_normal"
+        titlebar:leftType="textView"
+        />
+    <RelativeLayout
+        android:id="@+id/club_rereyout"
+        android:layout_below="@+id/title"
         android:layout_width="match_parent"
-        android:layout_below="@+id/cardview"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:groupIndicator="@null">
+        android:layout_height="match_parent">
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp">
+            <ImageView
+                android:id="@+id/imageview_1"
+                android:layout_width="380dp"
+                android:layout_height="190dp"
+                android:background="@mipmap/club"
+                tools:layout_editor_absoluteX="2dp"
+                tools:layout_editor_absoluteY="2dp" />
+            <Button
+                android:id="@+id/imagbtu_3"
+                android:layout_gravity="end"
+                android:layout_marginTop="150dp"
+                android:background="@color/cardview_shadow_end_color"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:text="点击了解"
+                android:textColor="#ffffff"/>
+        </android.support.v7.widget.CardView>
+
+        <ExpandableListView
+            android:id="@+id/st_view"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/cardview"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:groupIndicator="@null">
         </ExpandableListView>
+    </RelativeLayout>
 
-
-</RelativeLayout>
+</LinearLayout>

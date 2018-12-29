@@ -17,8 +17,8 @@ import java.util.List;
 
 public class MyExpandableAdapter extends BaseExpandableListAdapter {
 
-      private  List<Group>groups;
-      private  List<List<String>> list;
+    private  List<Group>groups;
+    private  List<List<String>> list;
     Context context;
     //构造函数将List传进
     public MyExpandableAdapter(Context context,List<List<String>> list,List<Group>groups) {
@@ -69,7 +69,7 @@ public class MyExpandableAdapter extends BaseExpandableListAdapter {
     //       所有方法都是继承BaseExpandableListAdapter所必须实现的方法
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
         Groupitem groupitem;
-         if (view==null){
+        if (view==null){
             view= LayoutInflater.from(context).inflate(R.layout.course_group,viewGroup,false);
             groupitem=new Groupitem();
             groupitem.textView=(TextView)view.findViewById(R.id.group_item);
@@ -79,16 +79,16 @@ public class MyExpandableAdapter extends BaseExpandableListAdapter {
         }else {
             groupitem=(Groupitem) view.getTag();
         }
-         groupitem.textView.setText(groups.get(i).getText());
-         groupitem.imageView_1.setImageResource(groups.get(i).getImg());
-         groupitem.imageView_2.setImageResource(groups.get(i).getIamg());
+        groupitem.textView.setText(groups.get(i).getText());
+        groupitem.imageView_1.setImageResource(groups.get(i).getImg());
+        groupitem.imageView_2.setImageResource(groups.get(i).getIamg());
 
         return view;
     }
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-            chilItem chilItem;
+        chilItem chilItem;
         if (view==null){
             view= LayoutInflater.from(context).inflate(R.layout.course_child,viewGroup,false);
             chilItem=new chilItem();

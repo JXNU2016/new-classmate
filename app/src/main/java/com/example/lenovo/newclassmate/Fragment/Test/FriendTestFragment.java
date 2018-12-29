@@ -44,7 +44,7 @@ public class FriendTestFragment extends Fragment {
      * questionOptionBeanList:当前题目的选项队列
      */
     private GridView gridView;
-    private TextView doneQ,allQ;
+    private TextView doneQ, allQ;
     private TextView questionText;
     private Button backButton, nextButton;
     private int index;
@@ -80,14 +80,14 @@ public class FriendTestFragment extends Fragment {
         backButton = view.findViewById(R.id.backButton);
         nextButton = view.findViewById(R.id.nextButton);
         qusetionOptionBeanList = questionBean.getQusetionOptionBeanList();
-        optionsGridViewAdapter = new OptionsGridViewAdapter(questionBean.getQusetionOptionBeanList(), getActivity());
+        optionsGridViewAdapter = new OptionsGridViewAdapter(qusetionOptionBeanList, getActivity());
 
-        allQ.setText(FriendTestActivity.questionBeanList.size()+"");
+        allQ.setText(FriendTestActivity.questionBeanList.size() + "");
         type = questionBean.getType();
         setQuestionType(type);  //根据题目类型设置选项可选数量
         setButton();    //设置按钮
         gridView.setAdapter(optionsGridViewAdapter);
-        doneQ.setText((index+1) + "");    //更新当前题号
+        doneQ.setText((index + 1) + "");    //更新当前题号
 
         return view;
     }
@@ -112,16 +112,14 @@ public class FriendTestFragment extends Fragment {
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         optionsGridViewAdapter.notifyDataSetChanged();
                         Intent intent = new Intent(toNext);   //跳到下一页
-                        intent.putExtra("optionValue", qusetionOptionBeanList.get(i).getValue());   //放入选择的选项
+                        intent.putExtra("optionValue", qusetionOptionBeanList.get(i).getDetails());   //放入选择的选项
                         localBroadcastManager.sendBroadcast(intent);
                     }
                 });
                 break;
             case "multiple":    //多选
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("（多选）");
-                spannableStringBuilder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.black)), 0, 5, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                spannableStringBuilder.append(questionBean.getDetails());
-                questionText.setText(spannableStringBuilder);
+
+                questionText.setText(questionBean.getDetails()+ " (多选）");
                 gridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -152,7 +150,7 @@ public class FriendTestFragment extends Fragment {
             });
         }
 
-        if (questionBean.getType() == "multiple" && index < 15) {
+        if (questionBean.getType().equals("multiple")) {
             nextButton.setVisibility(View.VISIBLE);
             nextButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -163,7 +161,7 @@ public class FriendTestFragment extends Fragment {
                     String choice = null;
 
                     for (int i = 0; i < length; i++) {
-                        choice += qusetionOptionBeanList.get((int)ids[i]).getValue();
+                        choice += qusetionOptionBeanList.get((int) ids[i]).getDetails();
                     }
                     intent.putExtra("optionValue", choice);   //放入选择的选项
                     localBroadcastManager.sendBroadcast(intent);

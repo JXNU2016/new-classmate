@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lenovo.newclassmate.Activity.Main_first_activity;
 import com.example.lenovo.newclassmate.Fragment.ChatFragment;
 import com.example.lenovo.newclassmate.Fragment.HomeFragment;
 import com.example.lenovo.newclassmate.Fragment.TestFragment;
@@ -98,11 +99,11 @@ public class StartActivity extends FragmentActivity {
         phone=preferences.getString("phone",null);
         userName=preferences.getString("userName",null);
         if (studentId == null || password == null) {
-            Intent intent = new Intent(StartActivity.this, MainActivity.class);
+            Intent intent = new Intent(StartActivity.this, Main_first_activity.class);
             startActivity(intent);
             finish();
         }
-
+        AllActivity.getInstance().addActivity(this);
         setContentView(R.layout.activity_start);
         ImmersionBar.with(this).init();
 

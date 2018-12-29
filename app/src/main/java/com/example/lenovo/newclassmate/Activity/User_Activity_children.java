@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -19,22 +20,23 @@ import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.webkit.ValueCallback;
 import android.widget.*;
-
 import com.donkingliang.labels.LabelsView;
 import com.example.lenovo.newclassmate.Activity.UserActivity.PersonDataActivity;
 import com.example.lenovo.newclassmate.Activity.UserActivity.person_label_Activity;
 import com.example.lenovo.newclassmate.Adapter.ImageAdapter;
+import com.example.lenovo.newclassmate.Adapter.MyPagerAdapter;
 import com.example.lenovo.newclassmate.Fragment.UserFragment;
 import com.example.lenovo.newclassmate.R;
 import com.example.lenovo.newclassmate.View.ActionSheetDialog;
 import com.example.lenovo.newclassmate.View.HeadZoomScrollView;
+import com.example.lenovo.newclassmate.View.ScaleImageView;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -71,6 +73,7 @@ public class User_Activity_children extends Activity {
     private static ArrayList<Bitmap> bitmap_images; //存放拍照和相册的集合
     private ImageAdapter imageAdapter;
     private int columnWidth;  //获取屏幕的宽度
+    private ArrayList<File> image_list; //ScaleImageView显示的图片
 
 
     @Override
@@ -81,10 +84,11 @@ public class User_Activity_children extends Activity {
         preferences=getSharedPreferences("land", Context.MODE_PRIVATE);
         userName=preferences.getString("userName",null);
         sex=preferences.getString("sex",null);
+        Person_signature=preferences.getString("signature",null);
 
 
         setContentView(R.layout.activity_user_children);
-
+        image_list = new ArrayList<>();
         if (Build.VERSION.SDK_INT >= 21) { //5.0及以上系统才支持
             View decorView = getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN  //满屏 将状态栏隐藏  SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN和SYSTEM_UI_FLAG_LAYOUT_STABLE，注意两个Flag必须要结合在一起使用，表示会让应用的主体内容占用系统状态栏的空间
@@ -114,9 +118,9 @@ public class User_Activity_children extends Activity {
 
         if(UserFragment.bit==null) {
             if (sex.equals("男")) {
-                roundImage.setImageResource(R.drawable.boy3);
+                roundImage.setImageResource(R.mipmap.boy);
             } else {
-                roundImage.setImageResource(R.drawable.girl2);
+                roundImage.setImageResource(R.mipmap.girl);
             }
         }
         bitmap_images=new ArrayList<>();
@@ -125,21 +129,40 @@ public class User_Activity_children extends Activity {
         //由一屏幕显示的项数决定
         columnWidth = dm.widthPixels;
         LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(
-               bitmap_images.size() * columnWidth /3+bitmap_images.size(), LinearLayout.LayoutParams.WRAP_CONTENT);//
+                bitmap_images.size() * columnWidth /3+bitmap_images.size(), LinearLayout.LayoutParams.WRAP_CONTENT);//
         gridView.setLayoutParams(params1);//设置宽和高
         gridView.setColumnWidth(columnWidth /3);//根据你一屏显示的项数决定
         gridView.setHorizontalSpacing(1); //水平距离
         gridView.setStretchMode(GridView.NO_STRETCH);
         gridView.setNumColumns(bitmap_images.size());//设置一行显示的总列数
-
         imageAdapter = new ImageAdapter(this,bitmap_images);
         gridView.setAdapter(imageAdapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ScaleImageView scaleImageView=new ScaleImageView(User_Activity_children.this);
+                scaleImageView.setFiles(image_list,position);
+                scaleImageView.setOnDeleteItemListener(position1 ->{
+                    bitmap_images.remove(position1);
+                    gridView.setLayoutParams(new LinearLayout.LayoutParams(
+                            bitmap_images.size() * columnWidth/3+bitmap_images.size(), LinearLayout.LayoutParams.WRAP_CONTENT));//设置宽和高
+                    gridView.setNumColumns(bitmap_images.size());//设置一行显示的总列数
+                    imageAdapter = new ImageAdapter(User_Activity_children.this,bitmap_images);
+                    gridView.setAdapter(imageAdapter);
+                    imageAdapter.notifyDataSetChanged();
+                    image_list.remove(position1); //删除ScaleImageView对应的图片
+                });
+                scaleImageView.create();
+            }
+        });
 
         label.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              Intent intent=new Intent(User_Activity_children.this,person_label_Activity.class);
-              startActivityForResult(intent,REQUEST_CODE);
+                Intent intent=new Intent(User_Activity_children.this,person_label_Activity.class);
+                startActivityForResult(intent,REQUEST_CODE);
+                finish();
             }
         });
         viewdataLayout.setOnClickListener(new View.OnClickListener() {
@@ -147,6 +170,7 @@ public class User_Activity_children extends Activity {
             public void onClick(View v) {
                 Intent intent=new Intent(User_Activity_children.this, PersonDataActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         uesr_head.setOnClickListener(new View.OnClickListener() {
@@ -200,15 +224,15 @@ public class User_Activity_children extends Activity {
 //                }
 //            }
 //        });
-       // scrollView.setOnTouchListener(this);
+        // scrollView.setOnTouchListener(this);
         initListeners();
         changStatusIconCollor(true);  //将状态栏图标设置黑色
-  }
+    }
 
 
     public void changStatusIconCollor(boolean setDark) {  //改变状态栏图标颜色
         //true:黑色
-       // false：白色
+        // false：白色
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             View decorView = getWindow().getDecorView();
             if(decorView != null){
@@ -274,21 +298,35 @@ public class User_Activity_children extends Activity {
         preferences=getSharedPreferences("land", Context.MODE_PRIVATE);
         userName=preferences.getString("userName",null);
         child_name.setText(userName);
+
+
+        arrayList=new ArrayList<>();
+        arrayList.clear();
+        String allLabel=preferences.getString("label",null);
+        String Label[]=allLabel.split(",");
+        if(Label.length>0)
+        {
+            for(String label : Label)
+            {
+                arrayList.add(label);
+            }
+            labelsView.setLabels(arrayList);
+        }
     }
 
     private void showDialog() {
         ActionSheetDialog dialog = new ActionSheetDialog(User_Activity_children.this).builder()
                 .addSheetItem("拍照", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
-            @Override
-            public void onClick(int which) {
-                takeForPhoto();
-            }
-        }).addSheetItem("相册", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
-            @Override
-            public void onClick(int which) {
-                takeForPicture();
-            }
-        }).setCancelable(false).setCanceledOnTouchOutside(true);
+                    @Override
+                    public void onClick(int which) {
+                        takeForPhoto();
+                    }
+                }).addSheetItem("相册", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
+                    @Override
+                    public void onClick(int which) {
+                        takeForPicture();
+                    }
+                }).setCancelable(false).setCanceledOnTouchOutside(true);
 
         dialog.show();
         //设置点击“取消”按钮监听，目的取消mFilePathCallback回调，可以重复调起弹窗
@@ -341,8 +379,10 @@ public class User_Activity_children extends Activity {
                     Toast.makeText(User_Activity_children.this, "取消了拍照", Toast.LENGTH_LONG).show();
                     return;
                 }
+                Uri a = data.getData();
                 Bitmap photo = data.getParcelableExtra("data");
                 if(id==R.id.add_image){  //添加个人图片
+                    image_list.add(uri2File(a));
                     add_image.setImageBitmap(photo);
                 } else  if(id==R.id.round_image){  //头像
                     UserFragment.bit=photo;
@@ -362,6 +402,7 @@ public class User_Activity_children extends Activity {
                         Uri imageUri = data.getData();
                         photoBmp = getBitmapFormUri(this, imageUri);
                         if (id == R.id.add_image) {  //添加个人图片
+                            image_list.add(uri2File(imageUri));
                             bitmap_images.add(photoBmp);
                             gridView.setLayoutParams(new LinearLayout.LayoutParams(
                                     bitmap_images.size() * columnWidth/3+bitmap_images.size(), LinearLayout.LayoutParams.WRAP_CONTENT));//设置宽和高
@@ -381,13 +422,19 @@ public class User_Activity_children extends Activity {
                     e.printStackTrace();
                 }
                 break;
-            case REQUEST_CODE:
-                if(resultCode==person_label_Activity.RESULT_CODE){
-                    if(data!=null){
-                        arrayList = data.getStringArrayListExtra("list");  //获取选中的标签集合
-                        labelsView.setLabels(arrayList);
-                    }
-                }
+//            case REQUEST_CODE:
+//                if(resultCode==person_label_Activity.RESULT_CODE){
+//                    String allLabel=preferences.getString("label",null);
+//                    String Label[]=allLabel.split(",");
+//                    if(Label.length>0)
+//                    {
+//                        for(String label : Label)
+//                        {
+//                            arrayList.add(label);
+//                        }
+//                        labelsView.setLabels(arrayList);
+//                    }
+//                }
         }
     }
     /**
@@ -450,6 +497,28 @@ public class User_Activity_children extends Activity {
         ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
         Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
         return bitmap;
+    }
+
+
+    /*
+    将Uri转换成File
+     */
+    private File uri2File(Uri uri) {
+        String img_path;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor actualimagecursor = managedQuery(uri, proj, null,
+                null, null);
+        if (actualimagecursor == null) {
+            img_path = uri.getPath();
+        } else {
+            int actual_image_column_index = actualimagecursor
+                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            actualimagecursor.moveToFirst();
+            img_path = actualimagecursor
+                    .getString(actual_image_column_index);
+        }
+        File file = new File(img_path);
+        return file;
     }
 
 

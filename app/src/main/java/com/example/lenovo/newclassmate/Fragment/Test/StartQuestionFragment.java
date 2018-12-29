@@ -16,19 +16,24 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.lenovo.newclassmate.Activity.TestActivity.CourseTestActivity;
+import com.example.lenovo.newclassmate.Activity.TestActivity.OrganizationTestActivity;
 import com.example.lenovo.newclassmate.Activity.TestActivity.StartTestActivity;
 import com.example.lenovo.newclassmate.Adapter.OptionsGridViewAdapter;
+import com.example.lenovo.newclassmate.Adapter.myArrayAdapter;
 import com.example.lenovo.newclassmate.Bean.QuestionBean;
 import com.example.lenovo.newclassmate.Bean.QusetionOptionBean;
 import com.example.lenovo.newclassmate.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Eskii
- *         初始测试碎片
+ * 初始测试碎片
  */
 public class StartQuestionFragment extends Fragment {
     /**
@@ -43,8 +48,9 @@ public class StartQuestionFragment extends Fragment {
      * type:题目类型（多选/单选）
      * questionOptionBeanList:当前题目的选项队列
      */
+    // 主要就是将xml文件解析到questionBeanList中，包含所有问题，再通过一个ViewPaper 和fragment 构成
     private GridView gridView;
-    private TextView doneQ,allQ;
+    private TextView doneQ, allQ;
     private TextView questionText;
     private Button backButton, nextButton;
     private int index;
@@ -70,26 +76,26 @@ public class StartQuestionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.test_item, container, false);
-
         localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
 
         gridView = view.findViewById(R.id.options);
-        doneQ = view.findViewById(R.id.doneQ);
         allQ = view.findViewById(R.id.allQ);
+        doneQ = view.findViewById(R.id.doneQ);
         questionText = view.findViewById(R.id.questionText);
         backButton = view.findViewById(R.id.backButton);
         nextButton = view.findViewById(R.id.nextButton);
         qusetionOptionBeanList = questionBean.getQusetionOptionBeanList();
-        optionsGridViewAdapter = new OptionsGridViewAdapter(questionBean.getQusetionOptionBeanList(), getActivity());
+        optionsGridViewAdapter = new OptionsGridViewAdapter(qusetionOptionBeanList, getActivity());
 
-        allQ.setText(StartTestActivity.questionBeanList.size()+"");
+        allQ.setText(StartTestActivity.questionBeanList.size() + "");
         type = questionBean.getType();
         setQuestionType(type);  //根据题目类型设置选项可选数量
         setButton();    //设置按钮
         gridView.setAdapter(optionsGridViewAdapter);
-        doneQ.setText((index+1) + "");    //更新当前题号
+        doneQ.setText((index + 1) + "");    //更新当前题号
 
         return view;
+
     }
 
     @Override
@@ -105,7 +111,7 @@ public class StartQuestionFragment extends Fragment {
         switch (type) {
 
             case "simple":  //单选
-                questionText.setText(questionBean.getDetails());
+                questionText.setText(questionBean.getDetails());//如果是单选，将xml文件解析得到的questionBean对象里面的details内容获取并赋给问题文本，questionBean在解释是已经进行了赋值
                 gridView.setChoiceMode(GridView.CHOICE_MODE_SINGLE);
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -113,15 +119,13 @@ public class StartQuestionFragment extends Fragment {
                         optionsGridViewAdapter.notifyDataSetChanged();
                         Intent intent = new Intent(toNext);   //跳到下一页
                         intent.putExtra("optionValue", qusetionOptionBeanList.get(i).getValue());   //放入选择的选项
-                        localBroadcastManager.sendBroadcast(intent);
+                        localBroadcastManager.sendBroadcast(intent);  //发送广播
                     }
                 });
                 break;
             case "multiple":    //多选
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("（多选）");
-                spannableStringBuilder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.black)), 0, 5, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                spannableStringBuilder.append(questionBean.getDetails());
-                questionText.setText(spannableStringBuilder);
+
+                questionText.setText(questionBean.getDetails()+ " (多选）");
                 gridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -139,7 +143,7 @@ public class StartQuestionFragment extends Fragment {
     private void setButton() {
 
         if (index == 0) {
-            backButton.setVisibility(View.INVISIBLE);
+            backButton.setVisibility(View.INVISIBLE); //如果是第一页就不显示上一题的按钮，不是第一页就显示上一题的按钮，单选题和多选题都有上一题，但是单选题没有下一题按钮，多选有下一题按钮
         } else {
             backButton.setVisibility(View.VISIBLE);
 
@@ -152,7 +156,7 @@ public class StartQuestionFragment extends Fragment {
             });
         }
 
-        if (questionBean.getType() == "multiple" && index < 15) {
+        if (questionBean.getType().equals("multiple")) {
             nextButton.setVisibility(View.VISIBLE);
             nextButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -160,12 +164,12 @@ public class StartQuestionFragment extends Fragment {
                     Intent intent = new Intent(toNext);   //跳到下一页
                     long ids[] = gridView.getCheckedItemIds();
                     int length = ids.length;
-                    int score = 0;
+                    String choice = null;
 
                     for (int i = 0; i < length; i++) {
-                        score += qusetionOptionBeanList.get((int)ids[i]).getValue();
+                        choice += qusetionOptionBeanList.get((int) ids[i]).getDetails();
                     }
-                    intent.putExtra("optionValue", score);   //放入选择的选项
+                    intent.putExtra("optionValue", choice);   //放入选择的选项
                     localBroadcastManager.sendBroadcast(intent);
                 }
             });

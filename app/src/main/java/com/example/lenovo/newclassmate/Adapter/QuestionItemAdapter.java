@@ -9,18 +9,21 @@ import com.example.lenovo.newclassmate.Fragment.Test.DormitoryTestFragment;
 import com.example.lenovo.newclassmate.Fragment.Test.FriendTestFragment;
 import com.example.lenovo.newclassmate.Fragment.Test.OrganizationTestFragment;
 import com.example.lenovo.newclassmate.Fragment.Test.StartQuestionFragment;
+import com.example.lenovo.newclassmate.Fragment.Test.TestResultFragment.CourseTestResultFragment;
 import com.example.lenovo.newclassmate.Fragment.Test.TestResultFragment.DormitoryTestResultFragment;
+import com.example.lenovo.newclassmate.Fragment.Test.TestResultFragment.FriendTestResultFragment;
+import com.example.lenovo.newclassmate.Fragment.Test.TestResultFragment.OrganizationTestResultFragment;
 import com.example.lenovo.newclassmate.Fragment.Test.TestResultFragment.StartTestResultFragment;
 
 /**
  * @author Eskii
- *         碎片适配器
+ * 碎片适配器
  */
 
 public class QuestionItemAdapter extends FragmentStatePagerAdapter {
 
     private int length = 0; //题目数组的长度
-    private String tag; //测试的类型
+    private String tag; //测试的类型 开始测试 还是 分寝测试 还是好友推荐测试
 
     public QuestionItemAdapter(FragmentManager fm) {
         super(fm);
@@ -43,13 +46,13 @@ public class QuestionItemAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public Fragment getItem(int position) { //获得碎片
+    public Fragment getItem(int position) { //获得碎片当前所在的页数，就是进行到第几题了
 
         if (tag.equals("start")) {
 
-            if (position == length) {    //如果长度等于题目长度则返回一个测试结果页面
+            if (position == length) {    //如果长度等于题目长度也就是说当前的fragment是最后一个问题，则返回一个测试结果页面，
                 return new StartTestResultFragment();
-            } else {                      //如果长度小于题目长度则返回测试界面
+            } else {                      //如果长度小于题目长度则返回下一题测试界面
                 return new StartQuestionFragment(position);
             }
 
@@ -62,11 +65,23 @@ public class QuestionItemAdapter extends FragmentStatePagerAdapter {
             }
 
         } else if (tag.equals("friend")) {
-            return new FriendTestFragment(position);
+            if (position == length) {
+                return new FriendTestResultFragment();
+            } else {
+                return new FriendTestFragment(position);
+            }
         } else if (tag.equals("organization")) {
-            return new OrganizationTestFragment();
+            if (position == length) {
+                return new OrganizationTestResultFragment();
+            } else {
+                return new OrganizationTestFragment(position);
+            }
         } else {
-            return new CourseTestFragment();
+            if (position == length) {
+                return new CourseTestResultFragment();
+            } else {
+                return new CourseTestFragment(position);
+            }
         }
     }
 

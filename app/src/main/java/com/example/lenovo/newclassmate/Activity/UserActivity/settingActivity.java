@@ -1,7 +1,9 @@
 package com.example.lenovo.newclassmate.Activity.UserActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -9,6 +11,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.lenovo.newclassmate.Activity.LoginActivity;
+import com.example.lenovo.newclassmate.Activity.Main_first_activity;
+import com.example.lenovo.newclassmate.AllActivity;
+import com.example.lenovo.newclassmate.MainActivity;
 import com.example.lenovo.newclassmate.R;
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
 
@@ -23,16 +28,20 @@ public class settingActivity extends Activity implements View.OnClickListener {
     private View clean_cache;
     private View abous_us;
     private Button exit;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor; //editor对象向SharedPreferences写入数据
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
-
+        AllActivity.getInstance().addActivity(this);
         change_password = findViewById(R.id.change_password_layout);
         clean_cache = findViewById(R.id.clean_cache);
         abous_us = findViewById(R.id.about_us_layout);
         exit = findViewById(R.id.exit_user);
+        preferences=getSharedPreferences("land", Context.MODE_PRIVATE);
+        editor=preferences.edit();
 
 
         change_password.setOnClickListener(this);
@@ -46,7 +55,7 @@ public class settingActivity extends Activity implements View.OnClickListener {
             @Override
             public void onClicked(View v, int action, String extra) {
                 if (action == CommonTitleBar.ACTION_LEFT_TEXT) {
-                    onBackPressed();
+                    finish();
                 }
             }
         });
@@ -67,7 +76,10 @@ public class settingActivity extends Activity implements View.OnClickListener {
                 startActivity(new Intent(settingActivity.this,about_usActivity.class));
                 break;
             case R.id.exit_user:
-                startActivity(new Intent(settingActivity.this,LoginActivity.class));
+                editor.clear();
+                editor.commit();
+                startActivity(new Intent(settingActivity.this,MainActivity.class));
+                finish();
                 break;
         }
     }

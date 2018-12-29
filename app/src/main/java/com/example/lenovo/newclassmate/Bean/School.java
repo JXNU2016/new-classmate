@@ -4,9 +4,12 @@ package com.example.lenovo.newclassmate.Bean;
 import android.app.TabActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TabHost;
 
+import com.example.lenovo.newclassmate.AllActivity;
 import com.example.lenovo.newclassmate.R;
+import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
 
 
 public class School extends TabActivity{
@@ -17,7 +20,17 @@ public class School extends TabActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.school);
         TH();
+        AllActivity.getInstance().addActivity(this);
+//设置标题
+        ((CommonTitleBar) findViewById(R.id.Library_title)).setListener(new CommonTitleBar.OnTitleBarListener() {
+            @Override
+            public void onClicked(View v, int action, String extra) {
+                if (action == CommonTitleBar.ACTION_LEFT_TEXT) {
+                    finish();
+                }
 
+            }
+        });
     }
     private void TH(){
         tabHost = findViewById(android.R.id.tabhost);

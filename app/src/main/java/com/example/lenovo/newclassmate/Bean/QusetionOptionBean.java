@@ -7,7 +7,7 @@ package com.example.lenovo.newclassmate.Bean;
 
 public class QusetionOptionBean extends BaseBean {
 
-    private String name;
+
     private String details;
     private int value;
 
@@ -16,23 +16,14 @@ public class QusetionOptionBean extends BaseBean {
     }
 
     /**
-     * @param name：选项的名字
      * @param details：选项的内容
      */
-    public QusetionOptionBean(String name, String details, int value) {
+    public QusetionOptionBean( String details, int value) {
         super();
-        this.name = name;
         this.details = details;
         this.value = value;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getDetails() {
         return details;
@@ -52,6 +43,6 @@ public class QusetionOptionBean extends BaseBean {
 
     @Override
     public String toString() {
-        return "QuestionOption[name=" + getName() + ",details=" + getDetails() + ",value="+getValue()+"]";
+        return "QuestionOption[details=" + getDetails() + ",value="+getValue()+"]";
     }
 }

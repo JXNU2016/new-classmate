@@ -3,15 +3,15 @@
     <!-- 标签选中时的背景 -->
     <item android:state_selected="true">
         <shape>
-            <stroke android:width="2dp" android:color="#656565" />
+            <stroke android:width="0dp" android:color="#222222" />
             <corners android:radius="8dp" />
-            <solid android:color="@android:color/white" />
+            <solid android:color="#222222" />
         </shape>
     </item>
     <!-- 标签的正常背景 -->
     <item>
         <shape>
-            <stroke android:width="2dp" android:color="#656565" />
+            <stroke android:width="0.1dp" android:color="#222222" />
             <corners android:radius="8dp" />
             <solid android:color="@android:color/white" />
         </shape>

@@ -1,12 +1,16 @@
 package com.example.lenovo.newclassmate.Activity.UserActivity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +18,7 @@ import com.codbking.widget.DatePickDialog;
 import com.codbking.widget.OnSureLisener;
 import com.codbking.widget.bean.DateType;
 import com.example.lenovo.newclassmate.Activity.User_Activity_children;
+import com.example.lenovo.newclassmate.AllActivity;
 import com.example.lenovo.newclassmate.Fragment.UserFragment;
 import com.example.lenovo.newclassmate.R;
 import com.example.pickerview.PickerView;
@@ -23,8 +28,10 @@ import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
 import com.example.lenovo.newclassmate.Activity.BaseActivity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * 个人资料设置
@@ -36,6 +43,7 @@ public class PersonDataActivity extends BaseActivity implements View.OnClickList
     public static final String SIGNATURE = "signature";
     public static final int REQUEST_CODE_FIRST = 1111;
     public static final int REQUEST_CODE_SECOND = 2222;
+    public static final int REQUEST_CODE_THIRD=3333;
     private View person_name_;
     private View personSignature;
     private TextView person_name_text; //昵称
@@ -59,11 +67,19 @@ public class PersonDataActivity extends BaseActivity implements View.OnClickList
     private View layout_sex;
     private View layout_birthday;
     private View layout_city;
+    private TextView man;
+    private TextView woman;
+    private Dialog dialog;
+    private View inflater;
+    private View layout_label;
+    private static ArrayList<String> lable_arrayList; //存放标签的集合
+    private TextView lable_text;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_data);
+        AllActivity.getInstance().addActivity(this);
         preferences = getSharedPreferences("land", Context.MODE_PRIVATE);
         studentId = preferences.getString("studentId", null);
         sex = preferences.getString("sex", null);
@@ -85,15 +101,20 @@ public class PersonDataActivity extends BaseActivity implements View.OnClickList
         layout_sex = findViewById(R.id.persondata_sex);
         layout_birthday = findViewById(R.id.persondata_birthday);
         layout_city = findViewById(R.id.persondata_city);
+        //个人标签
+        layout_label = findViewById(R.id.persondata_music);
+        lable_text = findViewById(R.id.music_text); //展示个人标签
 
 
         person_name_.setOnClickListener(this);
         personSignature.setOnClickListener(this);
+        layout_label.setOnClickListener(this);
+        layout_sex.setOnClickListener(this);
         if (UserFragment.bit == null) {
             if (sex.equals("男")) {
-                roundImageView.setImageResource(R.drawable.boy3);
+                roundImageView.setImageResource(R.mipmap.boy);
             } else {
-                roundImageView.setImageResource(R.drawable.girl2);
+                roundImageView.setImageResource(R.mipmap.girl);
             }
         }
 
@@ -109,7 +130,7 @@ public class PersonDataActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onClicked(View v, int action, String extra) {
                 if (action == CommonTitleBar.ACTION_LEFT_TEXT) {
-                    onBackPressed();
+                    finish();
                 }
                 if (action == CommonTitleBar.ACTION_RIGHT_TEXT) {
                     finish();
@@ -214,7 +235,35 @@ public class PersonDataActivity extends BaseActivity implements View.OnClickList
                 Intent intent_two = new Intent(PersonDataActivity.this,Person_signature_Activity.class);
                 startActivityForResult(intent_two,REQUEST_CODE_SECOND);
                 break;
+            case R.id.persondata_sex:
+                show_dialog(v);
+                break;
+            case R.id.man:
+                sex_textView.setText("男");
+                dialog.dismiss();
+                break;
+            case R.id.woman:
+                sex_textView.setText("女");
+                dialog.dismiss();
+                break;
+            case R.id.persondata_music:
+             Intent intent_three=new Intent(PersonDataActivity.this,person_label_Activity.class);
+             startActivityForResult(intent_three, REQUEST_CODE_THIRD);
         }
+    }
+
+    private void show_dialog(View view){
+        dialog = new Dialog(this, R.style.ActionSheetDialogStyle);
+        inflater = LayoutInflater.from(this).inflate(R.layout.sex_dialog,null);
+        man = inflater.findViewById(R.id.man);
+        woman = inflater.findViewById(R.id.woman);
+        man.setOnClickListener(this);
+        woman.setOnClickListener(this);
+        dialog.setContentView(inflater);  //将布局设置给dialog
+        Window dialogwindow= dialog.getWindow();  //获取当前Activity所在的窗体
+        dialogwindow.setGravity(Gravity.CENTER);  //设置dialog从中间弹出
+//        WindowManager.LayoutParams lp=dialogwindow.getAttributes();   //获得窗体的属性
+        dialog.show();
     }
 
 
@@ -231,6 +280,16 @@ public class PersonDataActivity extends BaseActivity implements View.OnClickList
             if(data!=null){
                 String signature=data.getStringExtra(SIGNATURE);
                 personSignature_text.setText(signature);
+            }
+        }else  if(requestCode==REQUEST_CODE_THIRD&&resultCode==person_label_Activity.RESULT_CODE){
+            if(data!=null){
+                String s="";
+                lable_arrayList = data.getStringArrayListExtra("list");  //获取选中的标签集合
+                Iterator<String> iterator=lable_arrayList.iterator();
+                 while (iterator.hasNext()){
+                    s=s+iterator.next()+"、";
+                 }
+                lable_text.setText(s.substring(0,s.length()-1));
             }
         }
     }

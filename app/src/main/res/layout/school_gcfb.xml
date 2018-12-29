@@ -21,14 +21,14 @@
         android:layout_height="580dp"
         android:layout_below="@+id/gcfb_tv1"
         android:layout_marginTop="10dp"
-        android:background="@drawable/librarygc1" />
+        android:background="@mipmap/librarygc1" />
 
     <ImageView
         android:id="@+id/gc_img2"
         android:layout_width="match_parent"
         android:layout_height="580dp"
         android:layout_below="@+id/gc_img1"
-        android:background="@drawable/librarygc2" />
+        android:background="@mipmap/librarygc2" />
     <TextView
         android:id="@+id/gcfb_tv2"
         android:text="青山湖校区图书馆"
@@ -43,7 +43,7 @@
         android:layout_below="@id/gcfb_tv2"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:background="@drawable/librarygc3"
+        android:background="@mipmap/librarygc3"
         />
 
 

@@ -12,7 +12,7 @@
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:background="@drawable/librarylogo"
+        android:background="@mipmap/librarylogo"
         />
     <TextView
         android:id="@+id/jz_tv1"

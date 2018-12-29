@@ -2,6 +2,7 @@ package com.example.lenovo.newclassmate.Bean;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lenovo.newclassmate.Adapter.MyExpandableAdapter;
+import com.example.lenovo.newclassmate.AllActivity;
 import com.example.lenovo.newclassmate.R;
+import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
+import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
+import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +35,7 @@ public class Course extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course);
-
+        AllActivity.getInstance().addActivity(this);
         button = (Button) findViewById(R.id.imagbtu_2);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,15 +45,27 @@ public class Course extends Activity {
         });
         initView();
 
+
+        //设置标题
+        ((CommonTitleBar) findViewById(R.id.Course_title)).setListener(new CommonTitleBar.OnTitleBarListener() {
+            @Override
+            public void onClicked(View v, int action, String extra) {
+                if (action == CommonTitleBar.ACTION_LEFT_TEXT) {
+                    finish();
+                }
+
+            }
+        });
+
     }
 
     //初始化ExpandableListView控件与Adapter
     private void initView() {
         //每一个二级列表的内容都用一个数组存放
-        String[] s1 = {"政治学", "西藏与旅游", "历史学", "人际心理学", "音乐治疗", "风水环境与地理", "电影鉴赏"};
-        String[] s2 = {"生物学", "化学工艺", "天文", "工艺品"};
-        String[] s3 = {"唱歌与发音", "乒乓球", "三人篮球", "排球"};
-        String[] s4 = {"游泳与健身", "乒乓球", "三人篮球", "棒球", "网球"};
+        String[] s1 = {"政治学", "西藏与旅游", "历史学", "人际交往心理学","幸福心理学", "风水环境与地理","喝的学问","世界名校历史" };
+        String[] s2 = {"生物制药学", "化学工艺", "天文", "工艺品","计算机组成原理","电脑维护","初学Python","web网页设计","计算机英语"};
+        String[] s3 = {"唱歌与发音", "爵士舞", "Breaking", "Pop-ping","国画","电影鉴赏","音乐治疗","西方音乐史","古典音乐赏析"};
+        String[] s4 = {"游泳与健身", "乒乓球", "三人篮球", "棒球", "网球","田径","足球","高尔夫球"};
         List<String> list1 = new ArrayList<>();
         for (String s : s1) {
             list1.add(s);
@@ -81,38 +98,41 @@ public class Course extends Activity {
 
 
     public void showDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = getLayoutInflater();
-        final View layout = inflater.inflate(R.layout.couse_alertdialog, null);//获取自定义布局
-        builder.setView(layout);
-        builder.setIcon(R.drawable.xcourse);//设置标题图标
-        builder.setTitle(R.string.coursename);//设置标题内容
-        // builder.setMessage("");//显示自定义布局内容
-        final TextView textView = (TextView) layout.findViewById(R.id.course_adtv2);
 
+        final NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(this);
 
-        //确认按钮
-        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-                // TODO Auto-generated method stub
-                Toast.makeText(getApplication(), "快看看有哪些选修课吧", Toast.LENGTH_SHORT).show();
-            }
-        });
+        Context context;
+        dialogBuilder
+                .withTitle("大学选修课是什么？")
+                .withTitleColor("#000000")
+                .withIcon(getResources().getDrawable(R.drawable.xcourse))
+                .withMessage("       大学里面的选修课是学校帮助学生丰富知识，拓宽知识面所开设的课程，课程丰富多彩，各个领域都有所涉略，学生可以自由选择课程和任课老师。大学选修课一般可以概括分为两类：公共选修课和专业选修课 ，选修课的学分要求一般是毕业的硬性指标，在修满学分后才有毕业资格，部分学校的学费与所选选修课的学分数相关。选课开始时间一般是大一下学期或者大二上学期，之后每个学期都可以选择选修课。")
+                .withMessageColor("#000000")
+                .withDialogColor("#FFFFF0")
+//                .setCustomView(viewresId, textView.getContext())
+                .withEffect(Effectstype.Newspager)
+                .withButton1Text("确定")
+                .withButton2Text("取消")
+                .isCancelableOnTouchOutside(false)
 
-        //取消
-        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-                // TODO Auto-generated method stub
-            }
-        });
-        final AlertDialog dlg = builder.create();
-        dlg.show();
+                .setButton1Click(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        dialogBuilder.dismiss();
+                        Toast.makeText(v.getContext(), "快去看看有哪些修选课吧", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setButton2Click(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogBuilder.dismiss();
+                    }
+                })
+                .show();
     }
 
-
-    }
+}
 
 
 

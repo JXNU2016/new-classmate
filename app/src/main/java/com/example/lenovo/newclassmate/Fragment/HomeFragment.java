@@ -182,21 +182,18 @@ public class HomeFragment extends Fragment {
     //绑定【测试结果】资源
     private List<TouristSpot> createTouristSpots() {
         List<TouristSpot> spots = new ArrayList<>();
-        url[0]="https://source.unsplash.com/AWh9C-QjhE4/600x800";
-        url[1]="https://source.unsplash.com/Xq1ntWruZQI/600x800";
-        url[2]="https://source.unsplash.com/NYyCqdBOKwc/600x800";
-        url[3]="https://source.unsplash.com/buF62ewDLcQ/600x800";
-        url[4]="https://source.unsplash.com/THozNzxEP3g/600x800";
-        type[0]="灵魂测试";
-        type[1]="分寝推荐测试";
-        type[2]="好友推荐测试";
-        type[3]="社团推荐测试";
-        type[4]="课程推荐测试";
-        spots.add(new TouristSpot("灵魂测试", "@"+userName, url[0]));
-        spots.add(new TouristSpot("分寝推荐测试", "@"+userName, url[1]));
-        spots.add(new TouristSpot("好友推荐测试", "@"+userName, url[2]));
-        spots.add(new TouristSpot("社团推荐测试", "@"+userName, url[3]));
-        spots.add(new TouristSpot("课程推荐测试", "@"+userName, url[4]));
+        url[0]="http://47.107.48.62:8080/test1.jpg";
+        url[1]="http://47.107.48.62:8080/test2.jpg";
+        url[2]="http://47.107.48.62:8080/test3.jpg";
+        url[3]="http://47.107.48.62:8080/test4.jpg";
+        type[0]="分寝推荐测试";
+        type[1]="好友推荐测试";
+        type[2]="社团推荐测试";
+        type[3]="课程推荐测试";
+        spots.add(new TouristSpot("分寝推荐测试", "@"+userName, url[0]));
+        spots.add(new TouristSpot("好友推荐测试", "@"+userName, url[1]));
+        spots.add(new TouristSpot("社团推荐测试", "@"+userName, url[2]));
+        spots.add(new TouristSpot("课程推荐测试", "@"+userName, url[3]));
         return spots;
     }
     //设置【测试结果】的adapter
